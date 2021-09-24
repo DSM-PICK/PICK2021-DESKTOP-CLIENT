@@ -1,7 +1,15 @@
-function App() {
+import { FC } from "react";
+import { Global } from "@emotion/react";
+import { reset } from "./style/globalStyles";
+import RootRouter from "./router";
+
+const App: FC = (): JSX.Element => {
   return (
-    <div>hi</div>
+    <>
+      <Global styles={reset} />
+      <RootRouter />
+    </>
   );
-}
+};
 
 export default App;
