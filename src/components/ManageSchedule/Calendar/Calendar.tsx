@@ -1,6 +1,7 @@
 import * as S from "./styles";
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../../assets";
+import Day from "./Days/Days";
 
 const Calendar: FC = (): JSX.Element => {
   const date: Date = new Date();
@@ -39,9 +40,9 @@ const Calendar: FC = (): JSX.Element => {
 
   const renderDay = () => {
     //달력 칸 42개 렌더링하기
-    const dayArray: Array<any> = [];
+    const dayArray: Array<JSX.Element> = [];
     for (let i = 1; i <= 42; i++) {
-      dayArray.push(<S.Days key={i} />);
+      dayArray.push(<Day key={i} />);
     }
     return dayArray;
   };

@@ -53,7 +53,6 @@ export const Next = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
   border-radius: 10px;
