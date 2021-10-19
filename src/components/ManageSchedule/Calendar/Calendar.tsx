@@ -1,7 +1,8 @@
 import * as S from "./styles";
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../../assets";
-import Day from "./Days/Days";
+import Day from "./Day/Day";
+import { data } from "../../../test/testData";
 
 const Calendar: FC = (): JSX.Element => {
   const date: Date = new Date();
@@ -10,42 +11,36 @@ const Calendar: FC = (): JSX.Element => {
   const DayContainer: MutableRefObject<any> = useRef();
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
   const Today: string = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
+  const Data = data;
 
-  useEffect(() => {
-    for (let i = 0; i < 41; i++) {
-      if (DayContainer.current.childNodes[i].children.length >= 1) {
-        DayContainer.current.childNodes[i].firstChild.remove();
-      }
-    }
-    makeCalendar(year, month);
-  }, [month]);
+  // useEffect(() => {
+  //   for (let i = 0; i < 41; i++) {
+  //     if (DayContainer.current.childNodes[i].children.length >= 1) {
+  //       DayContainer.current.childNodes[i].firstChild.remove();
+  //     }
+  //   }
+  //   makeCalendar(year, month);
+  // }, [month]);
 
-  const makeCalendar = (year: number, month: number) => {
-    const dateLength: number = new Date(year, month + 1, 0).getDate();
-    const newDate: number = new Date(year, month).getDay();
 
-    for (let i = newDate; i < dateLength + newDate; i++) {
-      const div = document.createElement("div");
-      div.innerHTML = `${i - (newDate - 1)}`;
-      if (`${year} ${month} ${div.innerHTML}` === Today) {
-        div.style.backgroundColor = "#FF6E04";
-        div.style.display = "inline";
-        div.style.padding = "0 3px";
-        div.style.borderRadius = "100%";
-        div.style.color = "white";
-      }
-      DayContainer.current.childNodes[i].insertBefore(div, null);
-    }
-  };
+  // const makeCalendar = (year: number, month: number) => {
+  //   const dateLength: number = new Date(year, month + 1, 0).getDate();
+  //   const newDate: number = new Date(year, month).getDay();
 
-  const renderDay = () => {
-    //달력 칸 42개 렌더링하기
-    const dayArray: Array<JSX.Element> = [];
-    for (let i = 1; i <= 42; i++) {
-      dayArray.push(<Day key={i} />);
-    }
-    return dayArray;
-  };
+  //   for (let i = newDate; i < dateLength + newDate; i++) {
+  //     const div = document.createElement("div");
+  //     div.innerHTML = `${i - (newDate - 1)}`;
+  //     if (`${year} ${month} ${div.innerHTML}` === Today) {
+  //       div.style.backgroundColor = "#FF6E04";
+  //       div.style.display = "inline";
+  //       div.style.padding = "0 3px";
+  //       div.style.borderRadius = "100%";
+  //       div.style.color = "white";
+  //     }
+  //     DayContainer.current.childNodes[i].insertBefore(div, null);
+  //   }
+  // };
+
 
   const nextMonth = () => {
     setMonth(month + 1);
@@ -83,7 +78,14 @@ const Calendar: FC = (): JSX.Element => {
           return <S.WeekDays key={index}>{week}</S.WeekDays>;
         })}
         </S.WeekContainer>
-        <S.DayContainer ref={DayContainer}>{renderDay()}</S.DayContainer>
+        <S.DayContainer>
+          {
+            Data.map((value, index) => {
+              return <Day date={value.date} dayType={value.name} floor2={value.director[0].name} floor3={value.director[1].name} floor4={value.director[1].name} />
+            })
+          }
+        </S.DayContainer>
+        {/* <S.DayContainer ref={DayContainer}>{renderDay()}</S.DayContainer> */}
       </S.CalendarContainer>
     </S.Container>
   );

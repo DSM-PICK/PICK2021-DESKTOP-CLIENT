@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  width: 960px;
-  height: 768px;
+  width: 900px;
 `;
 
 export const Date = styled.div`
   font-size: 24px;
-  line-height: 25px;
   font-weight: 500;
   cursor: pointer;
 `;
@@ -23,7 +21,6 @@ export const CalendarHeader = styled.div`
 export const Prev = styled.div`
   width: 38px;
   height: 38px;
-  text-align: center;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 10px;
@@ -39,7 +36,6 @@ export const Prev = styled.div`
 export const Next = styled.div`
   width: 38px;
   height: 38px;
-  text-align: center;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 10px;
