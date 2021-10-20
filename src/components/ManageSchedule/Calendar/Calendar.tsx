@@ -11,7 +11,8 @@ const Calendar: FC = (): JSX.Element => {
   const [TData, setTData] = useState(data);
   const [NData, setNData] = useState([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const DayContainer:MutableRefObject<any> = useRef();
 
   const dummyData = {
     date: "",
@@ -34,7 +35,7 @@ const Calendar: FC = (): JSX.Element => {
       DummyFirst.push(dummyData);
     }
 
-    for (let j = 0; j < dateLength - (newDate - 1 + TData.length); j++) {
+    for (let j = 0; j < dateLength - 1 - (newDate - 1 + TData.length); j++) {
       DummySecond.push(dummyData);
     }
 
@@ -46,7 +47,6 @@ const Calendar: FC = (): JSX.Element => {
   useEffect(() => {
     addDummyData(year, month);
   }, []);
-
 
   const nextMonth = () => {
     setMonth(month + 1);
@@ -88,9 +88,8 @@ const Calendar: FC = (): JSX.Element => {
             return <S.WeekDays key={index}>{week}</S.WeekDays>;
           })}
         </S.WeekContainer>
-        <S.DayContainer>
+        <S.DayContainer ref={DayContainer}>
           {NData.map((value: any, index: number) => {
-            console.log(value.date)
             return (
               <Day
                 key={index}
@@ -99,6 +98,9 @@ const Calendar: FC = (): JSX.Element => {
                 floor2={value.director[0].name}
                 floor3={value.director[1].name}
                 floor4={value.director[1].name}
+                Today={Today}
+                month={month}
+                year={year}
               />
             );
           })}
