@@ -9,6 +9,7 @@ const Calendar: FC = (): JSX.Element => {
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
   const [TData, setTData] = useState(data);
+  const [NData, setNData] = useState([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
   const Today: string = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
 
@@ -39,7 +40,7 @@ const Calendar: FC = (): JSX.Element => {
 
     newDateArray = [...DummyFirst, ...TData, ...DummySecond];
 
-    setTData(newDateArray);
+    setNData(newDateArray);
   };
 
   useEffect(() => {
@@ -88,7 +89,7 @@ const Calendar: FC = (): JSX.Element => {
           })}
         </S.WeekContainer>
         <S.DayContainer>
-          {TData.map((value: any, index: number) => {
+          {NData.map((value: any, index: number) => {
             console.log(value.date)
             return (
               <Day
