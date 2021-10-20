@@ -1,5 +1,5 @@
-export const data = [
-    {
+export const data: any = [
+  {
     date: "2021-10-01",
     name: "AFTER_SCHOOL",
     period: 3,
@@ -356,10 +356,5 @@ export const data = [
       },
     ],
   },
-  {date:"",name:"",period:"",director:[{name: "", teacher_id:"", floor:""}, {name: "", teacher_id:"id", floor:""}]},
-  {date:"",name:"",period:"",director:[{name: "", teacher_id:"", floor:""}, {name: "", teacher_id:"id", floor:""}]},
-  {date:"",name:"",period:"",director:[{name: "", teacher_id:"", floor:""}, {name: "", teacher_id:"id", floor:""}]},
-  {date:"",name:"",period:"",director:[{name: "", teacher_id:"", floor:""}, {name: "", teacher_id:"id", floor:""}]},
-  {date:"",name:"",period:"",director:[{name: "", teacher_id:"", floor:""}, {name: "", teacher_id:"id", floor:""}]},
-
+  // {date:"",name:"",period:"",director:[{name: "", teacher_id:"", floor:""}, {name: "", teacher_id:"id", floor:""}]},
 ];
