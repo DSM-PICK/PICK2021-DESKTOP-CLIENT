@@ -24,7 +24,8 @@ export const Date = styled.div<{ backgroundColor: string; color: string }>`
   align-items: center;
 `;
 
-export const DayType = styled.div`
+export const DayType = styled.div<{ color: string }>`
+  color: ${(props) => props.color};
   font-size: 14px;
   width: 28px;
   height: 28px;

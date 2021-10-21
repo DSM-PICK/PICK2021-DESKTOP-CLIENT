@@ -41,7 +41,7 @@ const Day: FC<Props> = ({
       case "AFTER_SCHOOL":
         setType("자습");
         break;
-    }
+    } 
   };
 
   return (
@@ -51,11 +51,11 @@ const Day: FC<Props> = ({
           backgroundColor={
             Today === fullDate ? `${COLOR.orange}` : `${COLOR.white}`
           }
-          color={Today == fullDate ? `${COLOR.white}` : `${COLOR.black}`}
+          color={Today === fullDate ? `${COLOR.white}` : `${COLOR.black}`}
         >
           {date}
         </S.Date>
-        <S.DayType>{type}</S.DayType>
+        <S.DayType color={Today === fullDate ? `${COLOR.orange}`: `${COLOR.black}`}>{type}</S.DayType>
       </S.DayTypeContainer>
       <S.InputContainer>
         <S.TeacherInput type="text" defaultValue={floor2} />
