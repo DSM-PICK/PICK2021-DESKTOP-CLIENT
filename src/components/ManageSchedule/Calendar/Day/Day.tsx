@@ -58,9 +58,9 @@ const Day: FC<Props> = ({
         <S.DayType color={Today === fullDate ? `${COLOR.orange}`: `${COLOR.black}`}>{type}</S.DayType>
       </S.DayTypeContainer>
       <S.InputContainer>
-        <S.TeacherInput type="text" defaultValue={floor2} />
-        <S.TeacherInput type="text" defaultValue={floor3} />
-        <S.TeacherInput type="text" defaultValue={floor4} />
+        <S.TeacherInput>{floor2}</S.TeacherInput>
+        <S.TeacherInput>{floor3}</S.TeacherInput>
+        <S.TeacherInput>{floor4}</S.TeacherInput>
       </S.InputContainer>
     </S.Days>
   );

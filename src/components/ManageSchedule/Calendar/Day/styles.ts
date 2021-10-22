@@ -38,7 +38,7 @@ export const InputContainer = styled.div`
   text-align: center;
 `;
 
-export const TeacherInput = styled.input`
+export const TeacherInput = styled.div`
   text-align: center;
   border: none;
   text-decoration: none;

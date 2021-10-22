@@ -19,7 +19,7 @@ export const ManageScheduleContainer = styled.div`
     }
 `;
 
-export const DownloadSchedule = styled.button`
+export const DownloadSchedule = styled.input`
     text-decoration: none;
     border: 1px solid ${COLOR.orange};
     outline: none;
@@ -32,13 +32,13 @@ export const DownloadSchedule = styled.button`
     margin: 8px auto;
 `;
 
-export const EditSchedule = styled.button`
+export const EditSchedule = styled.input`
     text-decoration: none;
     outline: none;
     width: 130px;
     height: 40px;
     background-color: ${COLOR.orange};
-    color: #FFFFFF;
+    color: ${COLOR.white};
     border-radius: 5px;
     cursor: pointer;
     border: none;
