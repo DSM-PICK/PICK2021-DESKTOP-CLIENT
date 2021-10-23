@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLOR } from "../../../../style";
+import { COLOR } from "../../../style";
 
 export const Days = styled.div`
   text-align: left;

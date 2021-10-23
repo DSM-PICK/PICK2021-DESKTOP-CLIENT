@@ -1,15 +1,17 @@
 import { FC, useState } from "react";
 import Calendar from "./Calendar/Calendar";
 import * as S from "./styles";
+import ChooseTeacher from "./ChooseTeacher/ChooseTeacher";
 
 const ManageSchedule: FC = (): JSX.Element => {
   const [editStatus, setEditStatus] = useState<boolean>(false);
 
   return (
     <S.Container>
-      <S.ManageScheduleContainer>
+      <S.MSContainer>
         <span>
           <S.PageTitle>일정관리</S.PageTitle>
+          <ChooseTeacher />
           <S.ButtonContainer>
             <S.DownloadSchedule
               type="button"
@@ -24,7 +26,7 @@ const ManageSchedule: FC = (): JSX.Element => {
           </S.ButtonContainer>
         </span>
         <Calendar editStatus={editStatus}/>
-      </S.ManageScheduleContainer>
+      </S.MSContainer>
     </S.Container>
   );
 };

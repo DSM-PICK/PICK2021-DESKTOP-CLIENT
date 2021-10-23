@@ -8,7 +8,7 @@ export const Container = styled.div`
     align-items: center;
 `;
 
-export const ManageScheduleContainer = styled.div`
+export const MSContainer = styled.div`
     width: 1440px;
     height: 800px;
     display: flex;
@@ -16,11 +16,12 @@ export const ManageScheduleContainer = styled.div`
     justify-content: space-between;
     span {
         width: 380px;
+        height: 80vh;
+        position: relative;
     }
 `;
 
 export const DownloadSchedule = styled.input`
-    text-decoration: none;
     border: 1px solid ${COLOR.orange};
     outline: none;
     width: 130px;
@@ -29,32 +30,32 @@ export const DownloadSchedule = styled.input`
     color: ${COLOR.orange};
     border-radius: 5px;
     cursor: pointer;
-    margin: 8px auto;
+    margin: 8px 0;
+    transform: translateX(100%);
 `;
 
 export const EditSchedule = styled.input`
-    text-decoration: none;
     outline: none;
-    width: 130px;
+    width: 100%;
     height: 40px;
     background-color: ${COLOR.orange};
     color: ${COLOR.white};
     border-radius: 5px;
     cursor: pointer;
     border: none;
-    margin: 8px auto;
+    transform: translateX(100%);
 `;
 
 export const ButtonContainer = styled.div`
     width: 100%;
     margin: 0 auto;
-    position: relative;
-    top: 100%;
-    transform: translateY(-130%);
+    position: absolute;
+    bottom: 0;
     width: 130px;
 `;
 
 export const PageTitle = styled.div`
     font-size: 28px;
-    font-weight: 500
+    font-weight: 500;
 `;
+

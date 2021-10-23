@@ -1,8 +1,9 @@
 import * as S from "./styles";
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../../assets";
-import Day from "./Day/Day";
+import Day from "../Day/Day";
 import { data } from "../../../test/testData";
+import ChooseTeacher from '../ChooseTeacher/ChooseTeacher';
 
 interface Props {
   editStatus: boolean
@@ -15,9 +16,7 @@ const Calendar: FC<Props> = ({editStatus}): JSX.Element => {
   const [TData, setTData] = useState<Array<string>>(data);
   const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
   const dummyData = {
     date: "",

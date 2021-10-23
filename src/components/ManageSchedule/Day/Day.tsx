@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import * as S from "./styles";
-import { COLOR } from "../../../../style/index";
+import { COLOR } from "../../../style/index";
 
 interface Props {
   fullDate: string;
