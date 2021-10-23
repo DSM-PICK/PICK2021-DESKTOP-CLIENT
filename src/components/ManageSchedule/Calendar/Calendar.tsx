@@ -4,21 +4,27 @@ import { Prev, Next } from "../../../assets";
 import Day from "./Day/Day";
 import { data } from "../../../test/testData";
 
-const Calendar: FC = (): JSX.Element => {
+interface Props {
+  editStatus: boolean
+}
+
+const Calendar: FC<Props> = ({editStatus}): JSX.Element => {
   const date: Date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
-  const [TData, setTData] = useState(data);
-  const [NData, setNData] = useState([]);
+  const [TData, setTData] = useState<Array<string>>(data);
+  const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-  const DayContainer:MutableRefObject<any> = useRef();
+  const Today: string = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
 
   const dummyData = {
     date: "",
     name: "",
     period: "",
     director: [
+      { name: "", teacher_id: "", floor: "" },
       { name: "", teacher_id: "", floor: "" },
       { name: "", teacher_id: "", floor: "" },
     ],
@@ -78,9 +84,12 @@ const Calendar: FC = (): JSX.Element => {
         <S.Date onClick={todayDate}>
           {year}년 {month + 1}월
         </S.Date>
-        <S.Next onClick={nextMonth}>
-          <img src={Next} />
-        </S.Next>
+        <div style={{display: "flex"}}>
+          <S.ChooseDateAlert style={editStatus ? {display: "block"} : {display: "none"}}>날짜를 선택해주세요</S.ChooseDateAlert>
+          <S.Next onClick={nextMonth}>
+            <img src={Next} />
+          </S.Next>
+        </div>
       </S.CalendarHeader>
       <S.CalendarContainer>
         <S.WeekContainer>
@@ -88,7 +97,7 @@ const Calendar: FC = (): JSX.Element => {
             return <S.WeekDays key={index}>{week}</S.WeekDays>;
           })}
         </S.WeekContainer>
-        <S.DayContainer ref={DayContainer}>
+        <S.DayContainer>
           {NData.map((value: any, index: number) => {
             return (
               <Day

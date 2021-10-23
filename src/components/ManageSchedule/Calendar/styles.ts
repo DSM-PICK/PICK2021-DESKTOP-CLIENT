@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { COLOR } from "../../../style";
 
 export const Container = styled.div`
   width: 900px;
@@ -16,6 +17,7 @@ export const CalendarHeader = styled.div`
   margin-bottom: 4px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Prev = styled.div`
@@ -46,6 +48,15 @@ export const Next = styled.div`
     width: 12px;
     height: 10px;
   }
+`;
+
+export const ChooseDateAlert = styled.div`
+  font-size: 18px;
+  color: ${COLOR.red};
+  position: absolute;
+  transform: translateX(-110%);
+  width: 160px;
+  line-height: 30px;
 `;
 
 export const CalendarContainer = styled.div`

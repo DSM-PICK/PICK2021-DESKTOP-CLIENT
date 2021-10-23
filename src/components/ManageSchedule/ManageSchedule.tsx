@@ -23,7 +23,7 @@ const ManageSchedule: FC = (): JSX.Element => {
             />
           </S.ButtonContainer>
         </span>
-        <Calendar />
+        <Calendar editStatus={editStatus}/>
       </S.ManageScheduleContainer>
     </S.Container>
   );

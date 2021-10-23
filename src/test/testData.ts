@@ -31,6 +31,11 @@ export const data: any = [
         teacher_id: "asdd",
         floor: 4,
       },
+      {
+        name: "",
+        teacher_id: "",
+        floor: ""
+      }
     ],
   },
   {

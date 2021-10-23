@@ -57,5 +57,4 @@ export const ButtonContainer = styled.div`
 export const PageTitle = styled.div`
     font-size: 28px;
     font-weight: 500
-
 `;
