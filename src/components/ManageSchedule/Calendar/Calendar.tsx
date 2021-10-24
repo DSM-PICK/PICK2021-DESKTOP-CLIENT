@@ -3,20 +3,22 @@ import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../../assets";
 import Day from "../Day/Day";
 import { data } from "../../../test/testData";
-import ChooseTeacher from '../ChooseTeacher/ChooseTeacher';
+import ChooseTeacher from "../ChooseTeacher/ChooseTeacher";
 
 interface Props {
-  editStatus: boolean
+  editStatus: boolean;
 }
 
-const Calendar: FC<Props> = ({editStatus}): JSX.Element => {
+const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
   const date: Date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
   const [TData, setTData] = useState<Array<string>>(data);
   const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
 
   const dummyData = {
     date: "",
@@ -83,8 +85,12 @@ const Calendar: FC<Props> = ({editStatus}): JSX.Element => {
         <S.Date onClick={todayDate}>
           {year}년 {month + 1}월
         </S.Date>
-        <div style={{display: "flex"}}>
-          <S.ChooseDateAlert style={editStatus ? {display: "block"} : {display: "none"}}>날짜를 선택해주세요</S.ChooseDateAlert>
+        <div style={{ display: "flex" }}>
+          <S.ChooseDateAlert
+            style={editStatus ? { display: "block" } : { display: "none" }}
+          >
+            날짜를 선택해주세요
+          </S.ChooseDateAlert>
           <S.Next onClick={nextMonth}>
             <img src={Next} />
           </S.Next>

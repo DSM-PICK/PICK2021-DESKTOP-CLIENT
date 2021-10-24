@@ -1,9 +1,15 @@
 import { FC } from "react";
 import * as S from "./styles";
 
-const ChooseTeacher: FC = (): JSX.Element => {
+interface Props {
+  editStatus: boolean;
+}
+
+const ChooseTeacher: FC<Props> = ({ editStatus }): JSX.Element => {
   return (
-    <S.Container>
+    <S.Container
+      style={editStatus ? { display: "block" } : { display: "none" }}
+    >
       <S.ChooseTeacherContainer>
         <S.FloorNameBox>
           <S.FloorName>2층</S.FloorName>
@@ -17,19 +23,17 @@ const ChooseTeacher: FC = (): JSX.Element => {
         </S.TeacherNameBox>
         <S.CTBody>
           <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
-          <S.TeacherNames>이동구</S.TeacherNames>
         </S.CTBody>
       </S.ChooseTeacherContainer>
+      <S.AfterSchoolTypeContainer>
+        <S.TypeTitleContainer>
+          <S.TypeTitle>동아리</S.TypeTitle>
+        </S.TypeTitleContainer>
+        <S.TypeList>
+          <S.Type>방과후</S.Type>
+          <S.Type>자습</S.Type>
+        </S.TypeList>
+      </S.AfterSchoolTypeContainer>
     </S.Container>
   );
 };

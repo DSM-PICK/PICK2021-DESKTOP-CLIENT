@@ -9,9 +9,9 @@ const ManageSchedule: FC = (): JSX.Element => {
   return (
     <S.Container>
       <S.MSContainer>
-        <span>
+        <S.CTContainer>
           <S.PageTitle>일정관리</S.PageTitle>
-          <ChooseTeacher />
+          <ChooseTeacher editStatus={editStatus}/>
           <S.ButtonContainer>
             <S.DownloadSchedule
               type="button"
@@ -24,7 +24,7 @@ const ManageSchedule: FC = (): JSX.Element => {
               onClick={() => setEditStatus(!editStatus)}
             />
           </S.ButtonContainer>
-        </span>
+        </S.CTContainer>
         <Calendar editStatus={editStatus}/>
       </S.MSContainer>
     </S.Container>
