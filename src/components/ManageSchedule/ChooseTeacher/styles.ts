@@ -3,13 +3,12 @@ import { COLOR } from "../../../style";
 
 export const Container = styled.div`
   width: 100%;
-  height: 80vh;
   display: grid;
   grid-template-rows: 70% 30%;
 `;
 
 export const ChooseTeacherContainer = styled.div`
-  height: 30%;
+  height: 65%;
 `;
 
 export const TeacherNameBox = styled.div`
