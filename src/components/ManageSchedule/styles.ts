@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { COLOR } from "../../style/index";
 
 export const Container = styled.div`
-  height: 100vh;
+  height: 90vh;
   display: flex;
   align-items: center;
   margin: 0 80px;

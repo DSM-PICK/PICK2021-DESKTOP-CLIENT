@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { COLOR } from "../../../style";
 
 export const Container = styled.div`
-  min-width: 850px;
+  min-width: 900px;
 `;
 
 export const Date = styled.div`

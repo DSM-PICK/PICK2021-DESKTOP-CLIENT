@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { COLOR } from "../../style";
 
 export const Container = styled.div`
   width: 100%;
@@ -119,4 +120,7 @@ export const Register = styled(Link)`
   cursor: pointer;
 `;
 
-export const LoginFail = styled.div``;
+export const LoginFail = styled.div`
+  color: ${COLOR.red};
+  margin-top: 50px;
+`;
