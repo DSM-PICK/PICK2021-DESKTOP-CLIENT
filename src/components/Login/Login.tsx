@@ -23,8 +23,8 @@ const Login: FC = (): JSX.Element => {
           <S.LoginSubmit type="submit" value="로그인" />
         </S.LoginForm>
         <S.Register to="/register">회원가입</S.Register>
+        <S.LoginFail>아이디 또는 비밀번호가 일치하지 않습니다.</S.LoginFail>
       </S.LoginContainer>
-      <S.LoginFail></S.LoginFail>
     </S.Container>
   );
 };
