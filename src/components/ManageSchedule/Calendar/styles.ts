@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
+import { COLOR } from "../../../style";
 
 export const Container = styled.div`
-  width: 960px;
-  height: 768px;
+  min-width: 850px;
 `;
 
 export const Date = styled.div`
   font-size: 24px;
-  line-height: 25px;
   font-weight: 500;
   cursor: pointer;
 `;
@@ -18,12 +17,12 @@ export const CalendarHeader = styled.div`
   margin-bottom: 4px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Prev = styled.div`
   width: 38px;
   height: 38px;
-  text-align: center;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 10px;
@@ -39,7 +38,6 @@ export const Prev = styled.div`
 export const Next = styled.div`
   width: 38px;
   height: 38px;
-  text-align: center;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 10px;
@@ -52,8 +50,16 @@ export const Next = styled.div`
   }
 `;
 
+export const ChooseDateAlert = styled.div`
+  font-size: 18px;
+  color: ${COLOR.red};
+  position: absolute;
+  transform: translateX(-110%);
+  width: 160px;
+  line-height: 30px;
+`;
+
 export const CalendarContainer = styled.div`
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
   border-radius: 10px;
