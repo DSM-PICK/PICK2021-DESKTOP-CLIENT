@@ -3,7 +3,6 @@ import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../../assets";
 import Day from "../Day/Day";
 import { data } from "../../../test/testData";
-import ChooseTeacher from "../ChooseTeacher/ChooseTeacher";
 
 interface Props {
   editStatus: boolean;
