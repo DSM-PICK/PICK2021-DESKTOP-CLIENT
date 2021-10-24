@@ -1,50 +1,59 @@
 import * as S from "./styles";
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../../assets";
+import Day from "../Day/Day";
+import { data } from "../../../test/testData";
+import ChooseTeacher from "../ChooseTeacher/ChooseTeacher";
 
-const Calendar: FC = (): JSX.Element => {
+interface Props {
+  editStatus: boolean;
+}
+
+const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
   const date: Date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
-  const DayContainer: MutableRefObject<any> = useRef();
+  const [TData, setTData] = useState<Array<string>>(data);
+  const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()} ${date.getMonth()} ${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
 
-  useEffect(() => {
-    for (let i = 0; i < 41; i++) {
-      if (DayContainer.current.childNodes[i].children.length >= 1) {
-        DayContainer.current.childNodes[i].firstChild.remove();
-      }
-    }
-    makeCalendar(year, month);
-  }, [month]);
+  const dummyData = {
+    date: "",
+    name: "",
+    period: "",
+    director: [
+      { name: "", teacher_id: "", floor: "" },
+      { name: "", teacher_id: "", floor: "" },
+      { name: "", teacher_id: "", floor: "" },
+    ],
+  };
 
-  const makeCalendar = (year: number, month: number) => {
+  const addDummyData = (year: number, month: number) => {
     const dateLength: number = new Date(year, month + 1, 0).getDate();
     const newDate: number = new Date(year, month).getDay();
+    let DummyFirst = [];
+    let DummySecond = [];
+    let newDateArray: any = [];
 
-    for (let i = newDate; i < dateLength + newDate; i++) {
-      const div = document.createElement("div");
-      div.innerHTML = `${i - (newDate - 1)}`;
-      if (`${year} ${month} ${div.innerHTML}` === Today) {
-        div.style.backgroundColor = "#FF6E04";
-        div.style.display = "inline";
-        div.style.padding = "0 3px";
-        div.style.borderRadius = "100%";
-        div.style.color = "white";
-      }
-      DayContainer.current.childNodes[i].insertBefore(div, null);
+    for (let i = 0; i < newDate - 1; i++) {
+      DummyFirst.push(dummyData);
     }
+
+    for (let j = 0; j < dateLength - 1 - (newDate - 1 + TData.length); j++) {
+      DummySecond.push(dummyData);
+    }
+
+    newDateArray = [...DummyFirst, ...TData, ...DummySecond];
+
+    setNData(newDateArray);
   };
 
-  const renderDay = () => {
-    //달력 칸 42개 렌더링하기
-    const dayArray: Array<any> = [];
-    for (let i = 1; i <= 42; i++) {
-      dayArray.push(<S.Days key={i} />);
-    }
-    return dayArray;
-  };
+  useEffect(() => {
+    addDummyData(year, month);
+  }, []);
 
   const nextMonth = () => {
     setMonth(month + 1);
@@ -70,19 +79,46 @@ const Calendar: FC = (): JSX.Element => {
   return (
     <S.Container>
       <S.CalendarHeader>
-        <S.Prev onClick={prevMonth}><img src={Prev}/></S.Prev>
+        <S.Prev onClick={prevMonth}>
+          <img src={Prev} />
+        </S.Prev>
         <S.Date onClick={todayDate}>
           {year}년 {month + 1}월
         </S.Date>
-        <S.Next onClick={nextMonth}><img src={Next}/></S.Next>
+        <div style={{ display: "flex" }}>
+          <S.ChooseDateAlert
+            style={editStatus ? { display: "block" } : { display: "none" }}
+          >
+            날짜를 선택해주세요
+          </S.ChooseDateAlert>
+          <S.Next onClick={nextMonth}>
+            <img src={Next} />
+          </S.Next>
+        </div>
       </S.CalendarHeader>
       <S.CalendarContainer>
-          <S.WeekContainer>
-        {week.map((week: any, index: number) => {
-          return <S.WeekDays key={index}>{week}</S.WeekDays>;
-        })}
+        <S.WeekContainer>
+          {week.map((week: any, index: number) => {
+            return <S.WeekDays key={index}>{week}</S.WeekDays>;
+          })}
         </S.WeekContainer>
-        <S.DayContainer ref={DayContainer}>{renderDay()}</S.DayContainer>
+        <S.DayContainer>
+          {NData.map((value: any, index: number) => {
+            return (
+              <Day
+                key={index}
+                fullDate={value.date}
+                dayType={value.name}
+                floor2={value.director[0].name}
+                floor3={value.director[1].name}
+                floor4={value.director[1].name}
+                Today={Today}
+                month={month}
+                year={year}
+              />
+            );
+          })}
+        </S.DayContainer>
       </S.CalendarContainer>
     </S.Container>
   );
