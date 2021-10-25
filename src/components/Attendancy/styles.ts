@@ -1,15 +1,29 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-    width: 1440px;
-    margin: 0 auto;
-    display: grid;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+`;
+
+export const ACContainer = styled.div`
+  width: 1440px;
+  height: 800px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+`;
+
+export const Title = styled.div`
+  font-size: 28px;
 `;
 
 export const ChooseCalendar = styled.div`
-
+  width: 500px;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  align-self: center;
 `;
 
-export const AttendancyList = styled.div`
-    
-`;
+export const AttendancyList = styled.div``;
