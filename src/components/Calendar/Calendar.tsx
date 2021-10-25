@@ -26,7 +26,6 @@ const Calendar: FC = (): JSX.Element => {
     for (let i = newDate; i < dateLength + newDate; i++) {
       const div = document.createElement("div");
       div.innerHTML = `${i - (newDate - 1)}`;
-      console.log(Today, `${year} ${month} ${div.innerHTML}`);
       if (`${year}${month + 1}${div.innerHTML}` === Today) {
         div.style.backgroundColor = `${COLOR.orange}`;
         div.style.width = "28px";
