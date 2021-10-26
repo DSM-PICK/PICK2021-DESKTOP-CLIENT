@@ -3,11 +3,6 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   width: 270px;
   height: 350px;
-  position: absolute;
-  top: 40%;
-  margin-top: calc((350px * -0.5));
-  left: 50%;
-  margin-left: calc((270px * -0.5));
 `;
 
 export const Date = styled.div`
@@ -84,6 +79,7 @@ export const Days = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   &:nth-child(7n + 1) {
     display: none;

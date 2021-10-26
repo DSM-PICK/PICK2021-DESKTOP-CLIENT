@@ -22,7 +22,6 @@ export const Title = styled.div`
 export const ChooseCalendar = styled.div`
   width: 500px;
   height: 80vh;
-  position: relative;
   display: flex;
   align-self: center;
 `;
