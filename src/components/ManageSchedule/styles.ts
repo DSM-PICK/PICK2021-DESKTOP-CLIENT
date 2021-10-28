@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: 90vh;
   display: flex;
   align-items: center;
-  margin: 0 80px;
+  margin: 0 140px;
 `;
 
 export const MSContainer = styled.div`

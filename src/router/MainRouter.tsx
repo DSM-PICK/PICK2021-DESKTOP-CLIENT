@@ -6,7 +6,7 @@ const MainRouter: FC = (): JSX.Element => {
     <>
       <Switch>
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/manage-schedule" component={ManageSchedulePage} />
+        <Route exact path="/manageschedule" component={ManageSchedulePage} />
         <Route exact path="/userinfo" component={UserInfoPage} />
         <Route exact path="/attendancy" component={AttendancyPage} />
       </Switch>

@@ -7,6 +7,7 @@ const Calendar: FC = (): JSX.Element => {
   const date: Date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
+  const [selectedDate, setSelectedDate] = useState<any>();
   const week: Array<string> = ["월", "화", "수", "목", "금"];
   const Today: string = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`;
   const DayContainer: MutableRefObject<any> = useRef();
@@ -26,7 +27,6 @@ const Calendar: FC = (): JSX.Element => {
     for (let i = newDate; i < dateLength + newDate; i++) {
       const div = document.createElement("div");
       div.innerHTML = `${i - (newDate - 1)}`;
-      console.log(Today, `${year} ${month} ${div.innerHTML}`);
       if (`${year}${month + 1}${div.innerHTML}` === Today) {
         div.style.backgroundColor = `${COLOR.orange}`;
         div.style.width = "28px";
@@ -35,6 +35,7 @@ const Calendar: FC = (): JSX.Element => {
         div.style.color = `${COLOR.white}`;
       }
       DayContainer.current.childNodes[i].insertBefore(div, null);
+      div.onclick = selectDate;
     }
   };
 
@@ -67,6 +68,12 @@ const Calendar: FC = (): JSX.Element => {
       setYear(year - 1);
     }
   };
+
+  const selectDate = (e:any) => {
+    const selectedDate = `${year} ${month + 1} ${e.target.innerHTML}`;
+    setSelectedDate(selectedDate);
+    
+  }
 
   return (
     <S.Container>

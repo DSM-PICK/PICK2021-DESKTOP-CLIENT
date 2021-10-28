@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { COLOR } from "../../style";
 
 export const Container = styled.div`
   width: 270px;
@@ -80,6 +79,7 @@ export const Days = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   &:nth-child(7n + 1) {
     display: none;

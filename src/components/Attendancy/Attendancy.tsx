@@ -6,10 +6,13 @@ const Attendancy: FC = (): JSX.Element => {
   return (
     <>
       <S.Container>
-        <S.ChooseCalendar>
-          <Calendar />
-        </S.ChooseCalendar>
-        
+        <S.ACContainer>
+          <S.ChooseCalendar>
+            <S.Title>출석 조회</S.Title>
+            <Calendar />
+          </S.ChooseCalendar>
+          <S.AttendancyList></S.AttendancyList>
+        </S.ACContainer>
       </S.Container>
     </>
   );
