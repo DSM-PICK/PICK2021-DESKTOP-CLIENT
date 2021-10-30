@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Attendancy from "../../components/Attendancy/Attendancy";
+import Attendancy from "../../components/AttendanceCheck/AttendanceCheck";
 import Header from "../../components/Header/Header";
 
 const AttendancyPage: FC = (): JSX.Element => {

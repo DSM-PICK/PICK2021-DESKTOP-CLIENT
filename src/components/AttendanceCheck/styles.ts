@@ -27,3 +27,7 @@ export const ChooseCalendar = styled.div`
 `;
 
 export const AttendancyList = styled.div``;
+
+export const Options = styled.div`
+  
+`;
