@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
-
+//출석 조회
 const Attendancy: FC = (): JSX.Element => {
   return (
     <>
