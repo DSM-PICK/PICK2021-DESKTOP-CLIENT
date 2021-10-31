@@ -2,7 +2,7 @@ import { FC } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 //출석 조회
-const Attendancy: FC = (): JSX.Element => {
+const AttendanceCheck: FC = (): JSX.Element => {
   return (
     <>
       <S.Container>
@@ -18,4 +18,4 @@ const Attendancy: FC = (): JSX.Element => {
   );
 };
 
-export default Attendancy;
+export default AttendanceCheck;
