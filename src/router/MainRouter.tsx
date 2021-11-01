@@ -8,7 +8,7 @@ const MainRouter: FC = (): JSX.Element => {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/manageschedule" component={ManageSchedulePage} />
         <Route exact path="/userinfo" component={UserInfoPage} />
-        <Route exact path="/attendancycheck" component={AttendanceCheckPage} />
+        <Route exact path="/attendancecheck" component={AttendanceCheckPage} />
         <Route exact path="/attendancechange" component={AttendanceChangePage } />
       </Switch>
     </>
