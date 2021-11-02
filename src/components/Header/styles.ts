@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { COLOR } from '../../style/index';
 export const Container = styled.div`
     width: 100%;
     height: 72px;
@@ -6,6 +7,8 @@ export const Container = styled.div`
     justify-content: space-between;
     padding: 0 8%;
     box-sizing: border-box;
+    background-color: ${COLOR.white};
+    border-bottom: 1px solid #E5E5E5;
 `;
 export const RegisterContainer = styled(Container)`
     width: 904px;

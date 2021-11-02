@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   width: 270px;
   height: 350px;
+  /* margin: 0 auto; */
 `;
 
 export const Date = styled.div`

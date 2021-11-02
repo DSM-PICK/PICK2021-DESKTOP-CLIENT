@@ -16,7 +16,7 @@ export const ACContainer = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 28px;
+  font-size: 24px;
 `;
 
 export const ChooseCalendar = styled.div`
@@ -24,6 +24,7 @@ export const ChooseCalendar = styled.div`
   height: 80vh;
   display: flex;
   align-self: center;
+  position: relative;
 `;
 
 export const AttendancyList = styled.div``;
