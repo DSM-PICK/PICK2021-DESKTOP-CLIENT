@@ -16,7 +16,7 @@ export const ACContainer = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 28px;
+  font-size: 24px;
 `;
 
 export const ChooseCalendar = styled.div`

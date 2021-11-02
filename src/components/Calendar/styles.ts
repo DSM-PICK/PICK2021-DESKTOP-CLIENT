@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  position: absolute;
   width: 270px;
   height: 350px;
-  top: 50%;
-  margin-top: -50%;
+  /* margin: 0 auto; */
 `;
 
 export const Date = styled.div`
