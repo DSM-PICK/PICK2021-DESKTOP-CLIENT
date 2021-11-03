@@ -70,11 +70,51 @@ export const AbsentsBox = styled.div`
 `;
 
 export const DateBox = styled.div`
+    display: flex;
+    width: 100%;
+    span {
+        margin-right: 5px;
+    }
+`;
 
+export const DateText = styled.div`
+    font-size: 16px;
+    cursor: pointer;
+`;
+
+export const ClassInput = styled.input`
+    width: 15px;
+    height: 100%;
+    text-align: center;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    border-bottom: 1px solid ${COLOR.black};
 `;
 
 export const TypeBox = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+`;
 
+export const Types = styled.div`
+    height: 100%;
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border: 1px solid ${COLOR.grey};
+    border-radius: 6px;
+    overflow: hidden;
+`;
+
+export const Type = styled.div`
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const NoteBox = styled.div`
@@ -87,7 +127,7 @@ export const NoteInput = styled.input`
     border: none;
     border-bottom: 1px solid ${COLOR.black};
     outline: none;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
 `;
 
@@ -139,7 +179,7 @@ export const ACListCells = styled.div`
 
 export const ACListColumns = styled.div`
     height: 30px;
-    border: 1px solid ${COLOR.grey};
+    border-bottom: 1px solid ${COLOR.grey};
     display: grid;
     grid-template-columns: 35% 20% 10% 10% 25%;
 `;
