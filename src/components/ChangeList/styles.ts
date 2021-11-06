@@ -27,13 +27,13 @@ export const OutingListWrapper = styled.div`
     height: 600px;
     display: flex;
 `;
-export const OutingListItem = styled.div`
+export const OutingListItem = styled.div<{rightLine ?: boolean}>`
     width: 350px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items:center;
-    border-right: 1px solid #E5E5E5;
+    border-right: ${props=>props.rightLine ? '1px solid #e5e5e5' : 'none'};
 `;
 export const TotalPeople = styled(Layer)`
     width: 100%;
@@ -42,7 +42,7 @@ export const TotalPeople = styled(Layer)`
     justify-content: center;
     align-items: center;
 `;
-export const studentInfo = styled(Layer)`
+export const StudentInfo = styled(Layer)`
     margin-bottom: 15px;
     font-size: 18px;
 `;
@@ -64,3 +64,17 @@ export const PageMoveBtn = styled.div`
     justify-content: center;
     align-items: center;
 `;
+
+// 출결 변동사항
+interface AttendanceChangeListStyle {
+    listWidth: string;
+    rightLine?: boolean;
+}
+export const AttendanceChangeListWrapper = styled(OutingListWrapper)`
+    width: 1500px;
+`;
+export const AbsentItem = styled(OutingListItem)<AttendanceChangeListStyle>`
+    width: ${(props) => props.listWidth};
+    border-right: ${props=>props.rightLine ? '1px solid #E5E5E5' : 'none'};
+`
+export const AbsentInfo = styled(StudentInfo)``;

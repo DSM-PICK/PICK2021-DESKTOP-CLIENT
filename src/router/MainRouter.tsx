@@ -1,7 +1,14 @@
 import { FC } from "react";
 import { Switch, Route } from "react-router-dom";
-import Header from "../components/Header/Header";
-import { LoginPage, ManageSchedulePage, UserInfoPage, AttendanceCheckPage, AttendanceChangePage, OutingListPage  } from "../Pages";
+import {
+  LoginPage,
+  ManageSchedulePage,
+  UserInfoPage,
+  AttendanceCheckPage,
+  AttendanceChangePage,
+  OutingListPage,
+  AttendanceChangeListPage,
+} from "../Pages";
 const MainRouter: FC = (): JSX.Element => {
   return (
     <>
@@ -11,7 +18,16 @@ const MainRouter: FC = (): JSX.Element => {
         <Route exact path="/manageschedule" component={ManageSchedulePage} />
         <Route exact path="/userinfo" component={UserInfoPage} />
         <Route exact path="/attendancecheck" component={AttendanceCheckPage} />
-        <Route exact path="/attendancechange" component={AttendanceChangePage } />
+        <Route
+          exact
+          path="/attendancechange"
+          component={AttendanceChangePage}
+        />
+        <Route
+          exact
+          path="/attendancechangelist"
+          component={AttendanceChangeListPage}
+        />
       </Switch>
     </>
   );
