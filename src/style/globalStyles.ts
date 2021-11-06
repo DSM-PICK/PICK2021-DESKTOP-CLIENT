@@ -132,6 +132,6 @@ export const reset = css`
     list-style: none;
   }
   html{
-    background-color: white;
+    background-color: #ffffff;
   }
 `;

@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
-import { COLOR } from "../../../style";
 
 export const Container = styled.div`
-  min-width: 900px;
+  width: 270px;
+  height: 350px;
+  /* margin: 0 auto; */
 `;
 
 export const Date = styled.div`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
   cursor: pointer;
 `;
@@ -14,49 +15,32 @@ export const Date = styled.div`
 export const CalendarHeader = styled.div`
   height: 33px;
   width: 100%;
-  margin-bottom: 4px;
+  margin-bottom: 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const Prev = styled.div`
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   img {
-    width: 12px;
-    height: 10px;
+    width: 28px;
+    height: 28px;
   }
 `;
 
 export const Next = styled.div`
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   img {
-    width: 12px;
-    height: 10px;
+    width: 28px;
+    height: 28px;
   }
-`;
-
-export const ChooseDateAlert = styled.div`
-  font-size: 18px;
-  color: ${COLOR.red};
-  position: absolute;
-  transform: translateX(-110%);
-  width: 160px;
-  line-height: 30px;
 `;
 
 export const CalendarContainer = styled.div`
@@ -69,6 +53,7 @@ export const WeekContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  column-gap: 28px;
 `;
 
 export const DayContainer = styled.div`
@@ -76,29 +61,27 @@ export const DayContainer = styled.div`
   text-align: center;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  height: 768px;
+  gap: 28px;
 `;
 
 export const WeekDays = styled.div`
-  text-align: center;
-  line-height: 36px;
-
-  &:first-child {
-    color: #ff453a;
-    display: none;
-  }
-
-  &:last-child {
-    display: none;
-  }
+  height: 28px;
+  width: 100%;
+  display: flex;
+  align-self: center;
+  justify-content: center;
 `;
 
 export const Days = styled.div`
-  text-align: left;
-  border-top: 1px solid #8e8e93;
-  padding-top: 8px;
-  padding-left: 8px;
-  border: 1px solid #e5e5e5;
+  height: 28px;
+  div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
   &:nth-child(7n + 1) {
     display: none;
   }
