@@ -37,7 +37,7 @@ export const OutingListItem = styled.div`
 `;
 export const TotalPeople = styled(Layer)`
     width: 100%;
-    height: 10%;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
