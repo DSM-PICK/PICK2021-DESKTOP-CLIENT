@@ -1,2 +1,3 @@
 export { default as LoginPage } from "./Login/LoginPage"; 
 export { default as ManageSchedulePage } from "./ManageSchedule/ManageSchedulePage";
+export { default as OutingListPage } from './ChangeList/OutingListPage'
