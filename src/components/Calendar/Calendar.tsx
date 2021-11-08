@@ -94,7 +94,7 @@ const Calendar: FC = (): JSX.Element => {
             return <S.WeekDays key={index}>{week}</S.WeekDays>;
           })}
         </S.WeekContainer>
-        .<S.DayContainer ref={DayContainer}>{renderDay()}</S.DayContainer>
+        <S.DayContainer ref={DayContainer}>{renderDay()}</S.DayContainer>
       </S.CalendarContainer>
     </S.Container>
   );
