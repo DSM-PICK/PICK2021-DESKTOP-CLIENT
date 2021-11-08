@@ -71,8 +71,14 @@ export const ACTitle = styled.div`
 `;
 
 export const AbsentsBox = styled.div`
+    display: flex;
 
 `;
+
+export const addAbsents = styled.div`
+    
+`;
+
 
 export const DateBox = styled.div`
     display: flex;
@@ -152,9 +158,10 @@ export const ACListBox = styled.div`
 
 export const ACListHeader = styled.div`
     width: 100%;
-    height: 10%;
+    height: 40px;
     display: grid;
     grid-template-columns: 35% 13% 13% 13% 25%;
+    border-bottom: 1px solid ${COLOR.grey};
 `;
 
 export const ACListBody = styled.div`
@@ -171,7 +178,6 @@ export const ACListHead = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid ${COLOR.grey};
 `;
 
 export const ACList = styled.div`
@@ -210,7 +216,6 @@ export const ACListSettings = styled.div`
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    /* border: 1px solid ${COLOR.grey}; */
     padding: 2px;
     border-radius: 5px;
     cursor: pointer;

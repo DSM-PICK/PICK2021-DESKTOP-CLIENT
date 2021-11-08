@@ -35,7 +35,9 @@ const AttendanceChange: FC = (): JSX.Element => {
             <S.Title>출결 변경</S.Title>
             <S.ACColumn>
               <S.ACTitle>결석자</S.ACTitle>
-              <S.AbsentsBox></S.AbsentsBox>
+              <S.AbsentsBox>
+                
+              </S.AbsentsBox>
             </S.ACColumn>
             <S.ACColumn>
               <S.ACTitle>날짜</S.ACTitle>
@@ -103,7 +105,7 @@ const AttendanceChange: FC = (): JSX.Element => {
                     <S.ACListCells>조준서</S.ACListCells>
                     <S.ACListCells>외출</S.ACListCells>
                     <S.ACListCells>신요셉</S.ACListCells>
-                    <S.ACListCells>학교 밖으로 나갔어용~</S.ACListCells>
+                    <S.ACListCells>학교 밖으로 나갔어요</S.ACListCells>
                     <S.ACListSettings>
                       <div />
                       <div />
