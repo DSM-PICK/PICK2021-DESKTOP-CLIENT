@@ -10,14 +10,14 @@ const OutingList: FC = (): JSX.Element => {
         <PageInfo pageName="출석체크" />
       </S.TitleWrapper>
       <S.OutingListWrapper>
-        <S.OutingListItem>
+        <S.OutingListItem rightLine>
           <S.Layer>2층</S.Layer>
-          <S.studentInfo>2216 이진우</S.studentInfo>
+          <S.StudentInfo>2216 이진우</S.StudentInfo>
         </S.OutingListItem>
-        <S.OutingListItem>
+        <S.OutingListItem rightLine>
           <S.Layer>3층</S.Layer>
         </S.OutingListItem>
-        <S.OutingListItem>
+        <S.OutingListItem rightLine>
           <S.Layer>4층</S.Layer>
         </S.OutingListItem>
         <S.OutingListItem>

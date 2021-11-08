@@ -4,3 +4,4 @@ export { default as OutingListPage } from './ChangeList/OutingListPage'
 export { default as UserInfoPage} from './UserInfo/UserInfoPage';
 export { default as AttendanceCheckPage } from "./AttendanceCheck/AttendanceCheckPage";
 export { default as AttendanceChangePage } from "./AttendanceChange/AttendanceChangePage";
+export { default as AttendanceChangeListPage } from "./ChangeList/AttendanceChangeListPage";
