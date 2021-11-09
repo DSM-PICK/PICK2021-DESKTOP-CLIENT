@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../style/index";
 
-export const Container = styled.div<{display : string}>`
-  width: 200px;
+export const Container = styled.div<{ display: string }>`
+  width: 185px;
   position: absolute;
   background: ${COLOR.white};
-  display: ${props => props.display};
-  padding: 10px;
+  display: ${(props) => props.display};
+  padding: 7px;
   border: 1px solid ${COLOR.gray};
   border-radius: 5px;
   transform: translateY(25px);
@@ -14,18 +14,19 @@ export const Container = styled.div<{display : string}>`
 `;
 
 export const Date = styled.div`
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
   cursor: pointer;
 `;
 
 export const CalendarHeader = styled.div`
   height: 33px;
-  width: 100%;
+  width: 90%;
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
 `;
 
 export const Prev = styled.div`
@@ -34,8 +35,8 @@ export const Prev = styled.div`
   align-items: center;
   cursor: pointer;
   img {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
   }
 `;
 
@@ -45,8 +46,8 @@ export const Next = styled.div`
   justify-content: center;
   cursor: pointer;
   img {
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
   }
 `;
 
@@ -85,10 +86,12 @@ export const WeekDays = styled.div`
   align-self: center;
   align-items: center;
   justify-content: center;
+  font-size: 15px;
 `;
 
 export const Days = styled.div`
   height: 28px;
+  border-radius: 10px;
   div {
     height: 100%;
     width: 100%;
@@ -96,6 +99,7 @@ export const Days = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    font-size: 14px;
   }
   &:nth-child(7n + 1) {
     display: none;

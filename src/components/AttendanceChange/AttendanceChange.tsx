@@ -3,7 +3,12 @@ import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 import { COLOR } from "../../style/index";
 import { useRecoilState } from "recoil";
-import { FModal, FDateValue, SModal, SDateValue } from "../../modules/atom/ATChange";
+import {
+  FModal,
+  FDateValue,
+  SModal,
+  SDateValue,
+} from "../../modules/atom/ATChange";
 
 //출결 변경
 const AttendanceChange: FC = (): JSX.Element => {
@@ -59,20 +64,32 @@ const AttendanceChange: FC = (): JSX.Element => {
               <S.DateBox>
                 {/* 첫번째 날짜  */}
                 <S.Date>
-                  <S.DateText onClick={() => setIsFOpen(!isFOpen)} ref={(el) => (TypesRefs.current[0] = el)}>
+                  <S.DateText
+                    onClick={() => setIsFOpen(!isFOpen)}
+                    ref={(el) => (TypesRefs.current[0] = el)}
+                  >
                     {fdateValue}
                   </S.DateText>
-                  <Calendar isOpen={isFOpen} index={0}/>
-                  <S.ClassInput />
-                  <div>교시</div>
+                  <Calendar isOpen={isFOpen} index={0} />
+                  <S.ClassContainer>
+                    <S.ClassInput />
+                    <div>교시</div>
+                  </S.ClassContainer>
                 </S.Date>
                 <span>~</span>
                 {/* 두번째 날짜 */}
                 <S.Date>
-                  <S.DateText onClick={() => setIsSOpen(!isSOpen)} ref={(el) => (TypesRefs.current[1] = el)}>{sdateValue}</S.DateText>
-                  <Calendar isOpen={isSOpen} index={1}/>
-                  <S.ClassInput />
-                  <div>교시</div>
+                  <S.DateText
+                    onClick={() => setIsSOpen(!isSOpen)}
+                    ref={(el) => (TypesRefs.current[1] = el)}
+                  >
+                    {sdateValue}
+                  </S.DateText>
+                  <Calendar isOpen={isSOpen} index={1} />
+                  <S.ClassContainer>
+                    <S.ClassInput />
+                    <div>교시</div>
+                  </S.ClassContainer>
                 </S.Date>
               </S.DateBox>
             </S.ACColumn>

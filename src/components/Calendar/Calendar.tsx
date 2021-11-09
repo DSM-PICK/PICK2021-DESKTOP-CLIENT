@@ -51,11 +51,12 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
       const div = document.createElement("div");
       div.innerHTML = `${i - (newDate - 1)}`;
       if (`${year}${month + 1}${div.innerHTML}` === Today) {
-        div.style.backgroundColor = `${COLOR.orange}`;
-        div.style.color = `${COLOR.white}`;
-        div.style.width = "23px";
-        div.style.height = "23px";
+        div.style.color = `${COLOR.orange}`;
+        div.style.width = "20px";
+        div.style.height = "20px";
         div.style.borderRadius = "100%";
+        div.style.cursor = "pointer";
+        div.style.fontSize = "15px";
       }
       DayContainer.current.childNodes[i].insertBefore(div, null);
       div.onclick = selectCalendar;
