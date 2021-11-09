@@ -9,7 +9,7 @@ const AttendanceCheck: FC = (): JSX.Element => {
         <S.ACContainer>
           <S.ChooseCalendar>
             <S.Title>출석 조회</S.Title>
-            <Calendar />
+            {/* <Calendar isOpen={true}/> */}
           </S.ChooseCalendar>
           <S.AttendancyList></S.AttendancyList>
         </S.ACContainer>

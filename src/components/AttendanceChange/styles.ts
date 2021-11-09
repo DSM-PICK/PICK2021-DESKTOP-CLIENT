@@ -91,12 +91,16 @@ export const DateBox = styled.div`
 export const Date = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 170px;
+    width: 185px;
 `;
 
 export const DateText = styled.div`
     font-size: 16px;
     cursor: pointer;
+    margin-right: 10px;œ
+    &:hover {
+        border-bottom: 1px dotted ${COLOR.black};
+    }
 `;
 
 export const ClassInput = styled.input`

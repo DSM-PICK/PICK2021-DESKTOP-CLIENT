@@ -2,24 +2,35 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 import { COLOR } from "../../style/index";
-import {useRecoilState, SetRecoilState} from 'recoil'
-import {main} from '../../modules/atom/main/index'
+import { useRecoilState } from "recoil";
+import { FModal, FDateValue, SModal, SDateValue } from "../../modules/atom/ATChange";
 
 //출결 변경
 const AttendanceChange: FC = (): JSX.Element => {
-  const [mainValue, setMainValue] = useRecoilState(main);
+  const date = new Date();
   const ACListArray: string[] = ["결석일", "결석자", "종류", "신고자", "비고"];
   const TypesArray: string[] = ["외출", "현체", "귀가", "이동", "취업"];
   const TestArray = [];
-  const [typeIndex, setTypeIndex] = useState<number>(0);
   const TypesRefs = useRef(new Array(TypesArray.length));
-
-
-  console.log(mainValue);
+  const [typeIndex, setTypeIndex] = useState<number>(0);
+  const [isFOpen, setIsFOpen] = useRecoilState<boolean>(FModal);
+  const [isSOpen, setIsSOpen] = useRecoilState<boolean>(SModal);
+  const [fdateValue, setFdateValue] = useRecoilState<string>(FDateValue);
+  const [sdateValue, setSdateValue] = useRecoilState<string>(SDateValue);
 
   for (let i = 0; i < 20; i++) {
     TestArray.push(i);
   }
+
+  useEffect(() => {
+    setFdateValue(
+      `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+    );
+    setSdateValue(
+      `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+    );
+  }, []);
+
   useEffect(() => {
     for (let i = 0; i < ACListArray.length; i++) {
       TypesRefs.current[i].style.backgroundColor = `${COLOR.white}`;
@@ -41,22 +52,25 @@ const AttendanceChange: FC = (): JSX.Element => {
             <S.Title>출결 변경</S.Title>
             <S.ACColumn>
               <S.ACTitle>결석자</S.ACTitle>
-              <S.AbsentsBox>
-                
-              </S.AbsentsBox>
+              <S.AbsentsBox></S.AbsentsBox>
             </S.ACColumn>
             <S.ACColumn>
               <S.ACTitle>날짜</S.ACTitle>
               <S.DateBox>
+                {/* 첫번째 날짜  */}
                 <S.Date>
-                  <S.DateText>2020년 9월 31일</S.DateText>
-                  <Calendar />
+                  <S.DateText onClick={() => setIsFOpen(!isFOpen)} ref={(el) => (TypesRefs.current[0] = el)}>
+                    {fdateValue}
+                  </S.DateText>
+                  <Calendar isOpen={isFOpen} index={0}/>
                   <S.ClassInput />
                   <div>교시</div>
                 </S.Date>
                 <span>~</span>
+                {/* 두번째 날짜 */}
                 <S.Date>
-                  <S.DateText>2020년 10월 3일</S.DateText>
+                  <S.DateText onClick={() => setIsSOpen(!isSOpen)} ref={(el) => (TypesRefs.current[1] = el)}>{sdateValue}</S.DateText>
+                  <Calendar isOpen={isSOpen} index={1}/>
                   <S.ClassInput />
                   <div>교시</div>
                 </S.Date>
@@ -92,7 +106,6 @@ const AttendanceChange: FC = (): JSX.Element => {
             <S.AddButton type="button" value="추가하기" />
             <S.ErrorMessage>비고의 내용이 10글자를 넘었습니다</S.ErrorMessage>
           </div>
-          {/* <Calendar /> */}
         </S.ACBox>
         <S.ACListBox>
           <S.Title>출결 변동사항</S.Title>

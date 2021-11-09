@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../style/index";
 
-export const Container = styled.div`
+export const Container = styled.div<{display : string}>`
   width: 200px;
   position: absolute;
   background: ${COLOR.white};
+  display: ${props => props.display};
   padding: 10px;
   border: 1px solid ${COLOR.gray};
   border-radius: 5px;

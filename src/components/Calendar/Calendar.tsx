@@ -1,16 +1,39 @@
 import * as S from "./styles";
-import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
+import {
+  FC,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { Prev, Next } from "../../assets";
 import { COLOR } from "../../style/index";
+import {
+  FModal,
+  FDateValue,
+  SDateValue,
+  SModal,
+} from "../../modules/atom/ATChange";
+import { useSetRecoilState } from "recoil";
 
-const Calendar: FC = (): JSX.Element => {
+interface Props {
+  isOpen: boolean;
+  index: number;
+}
+
+const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const date: Date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
-  const [selectedDate, setSelectedDate] = useState<any>();
   const week: Array<string> = ["월", "화", "수", "목", "금"];
-  const Today: string = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}${
+    date.getMonth() + 1
+  }${date.getDate()}`;
   const DayContainer: MutableRefObject<any> = useRef();
+  const setFDate = useSetRecoilState(FDateValue);
+  const setSDate = useSetRecoilState(SDateValue);
+  const setFOpen = useSetRecoilState(FModal);
+  const setSOpen = useSetRecoilState(SModal);
 
   useEffect(() => {
     for (let i = 0; i < 41; i++) {
@@ -30,12 +53,12 @@ const Calendar: FC = (): JSX.Element => {
       if (`${year}${month + 1}${div.innerHTML}` === Today) {
         div.style.backgroundColor = `${COLOR.orange}`;
         div.style.color = `${COLOR.white}`;
-        div.style.width = "25px";
-        div.style.height = "25px";
+        div.style.width = "23px";
+        div.style.height = "23px";
         div.style.borderRadius = "100%";
       }
       DayContainer.current.childNodes[i].insertBefore(div, null);
-      div.onclick = selectDate;
+      div.onclick = selectCalendar;
     }
   };
 
@@ -69,14 +92,19 @@ const Calendar: FC = (): JSX.Element => {
     }
   };
 
-  const selectDate = (e:any) => {
-    const selectedDate = `${year} ${month + 1} ${e.target.innerHTML}`;
-    setSelectedDate(selectedDate);
-    
-  }
+  const selectCalendar = (e: any) => {
+    const selectDate = `${year}년 ${month + 1}월 ${e.target.innerHTML}일`;
+    if (index === 0) {
+      setFDate(selectDate);
+      setFOpen(false);
+    } else {
+      setSDate(selectDate);
+      setSOpen(false);
+    }
+  };
 
   return (
-    <S.Container>
+    <S.Container display={isOpen ? "block" : "none"}>
       <S.CalendarHeader>
         <S.Prev onClick={prevMonth}>
           <img src={Prev} />
