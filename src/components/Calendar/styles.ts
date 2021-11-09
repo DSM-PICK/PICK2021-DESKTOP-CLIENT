@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
+import { COLOR } from "../../style/index";
 
 export const Container = styled.div`
-  width: 270px;
-  height: 350px;
-  /* margin: 0 auto; */
+  width: 200px;
+  position: absolute;
+  background: ${COLOR.white};
+  padding: 10px;
+  border: 1px solid ${COLOR.gray};
+  border-radius: 5px;
+  transform: translateY(25px);
+  z-index: 3;
 `;
 
 export const Date = styled.div`
@@ -15,7 +21,7 @@ export const Date = styled.div`
 export const CalendarHeader = styled.div`
   height: 33px;
   width: 100%;
-  margin-bottom: 28px;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,8 +33,8 @@ export const Prev = styled.div`
   align-items: center;
   cursor: pointer;
   img {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -38,8 +44,8 @@ export const Next = styled.div`
   justify-content: center;
   cursor: pointer;
   img {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -53,7 +59,7 @@ export const WeekContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  column-gap: 28px;
+  column-gap: 10px;
 `;
 
 export const DayContainer = styled.div`
@@ -61,7 +67,14 @@ export const DayContainer = styled.div`
   text-align: center;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  gap: 28px;
+  gap: 10px;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
 `;
 
 export const WeekDays = styled.div`
@@ -69,6 +82,7 @@ export const WeekDays = styled.div`
   width: 100%;
   display: flex;
   align-self: center;
+  align-items: center;
   justify-content: center;
 `;
 

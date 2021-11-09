@@ -2,14 +2,20 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 import { COLOR } from "../../style/index";
+import {useRecoilState, SetRecoilState} from 'recoil'
+import {main} from '../../modules/atom/main/index'
 
 //출결 변경
 const AttendanceChange: FC = (): JSX.Element => {
+  const [mainValue, setMainValue] = useRecoilState(main);
   const ACListArray: string[] = ["결석일", "결석자", "종류", "신고자", "비고"];
   const TypesArray: string[] = ["외출", "현체", "귀가", "이동", "취업"];
   const TestArray = [];
   const [typeIndex, setTypeIndex] = useState<number>(0);
   const TypesRefs = useRef(new Array(TypesArray.length));
+
+
+  console.log(mainValue);
 
   for (let i = 0; i < 20; i++) {
     TestArray.push(i);
@@ -44,6 +50,7 @@ const AttendanceChange: FC = (): JSX.Element => {
               <S.DateBox>
                 <S.Date>
                   <S.DateText>2020년 9월 31일</S.DateText>
+                  <Calendar />
                   <S.ClassInput />
                   <div>교시</div>
                 </S.Date>
@@ -85,7 +92,7 @@ const AttendanceChange: FC = (): JSX.Element => {
             <S.AddButton type="button" value="추가하기" />
             <S.ErrorMessage>비고의 내용이 10글자를 넘었습니다</S.ErrorMessage>
           </div>
-          <Calendar />
+          {/* <Calendar /> */}
         </S.ACBox>
         <S.ACListBox>
           <S.Title>출결 변동사항</S.Title>

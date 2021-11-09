@@ -29,10 +29,10 @@ const Calendar: FC = (): JSX.Element => {
       div.innerHTML = `${i - (newDate - 1)}`;
       if (`${year}${month + 1}${div.innerHTML}` === Today) {
         div.style.backgroundColor = `${COLOR.orange}`;
-        div.style.width = "28px";
-        div.style.height = "28px";
-        div.style.borderRadius = "100%";
         div.style.color = `${COLOR.white}`;
+        div.style.width = "25px";
+        div.style.height = "25px";
+        div.style.borderRadius = "100%";
       }
       DayContainer.current.childNodes[i].insertBefore(div, null);
       div.onclick = selectDate;
