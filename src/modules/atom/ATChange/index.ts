@@ -19,3 +19,8 @@ export const SDateValue = atom({
   key: "sdate",
   default: "",
 });
+
+export const WordLength = atom({
+  key: "length",
+  default: 0
+})

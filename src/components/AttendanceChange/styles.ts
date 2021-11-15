@@ -4,7 +4,7 @@ import { COLOR } from "../../style/index";
 export const Container = styled.div`
   height: 90vh;
   display: flex;
-  /* margin: 0 140px; */
+  width: 100vw;
   justify-content: center;
   align-items: center;
 `;
@@ -41,14 +41,14 @@ export const AddButton = styled.input`
   font-size: 16px;
 `;
 
-export const ErrorMessage = styled.div`
+export const ErrorMessage = styled.div<{ display: string }>`
   width: 100%;
   color: red;
   text-align: center;
   bottom: 0;
   transform: translateY(100%);
   font-size: 16px;
-  display: none;
+  display: ${(props) => props.display};
 `;
 
 export const ACColumn = styled.div`
@@ -67,15 +67,25 @@ export const ACTitle = styled.div`
 `;
 
 export const AbsentsBox = styled.div`
-  display: flex;
+  
 `;
 
-export const addAbsents = styled.div``;
+export const AddAbsents = styled.div`
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  border: 1px solid ${COLOR.gray};
+  color: 1px solid ${COLOR.gray};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+`;
 
 export const DateBox = styled.div`
   display: flex;
   width: 100%;
-  
+
   span {
     margin: 0 10px;
   }

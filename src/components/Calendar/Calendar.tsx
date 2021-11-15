@@ -98,9 +98,11 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
     if (index === 0) {
       setFDate(selectDate);
       setFOpen(false);
-    } else {
+    } else if(index === 1){
       setSDate(selectDate);
       setSOpen(false);
+    } else if(index === 2) {
+      
     }
   };
 

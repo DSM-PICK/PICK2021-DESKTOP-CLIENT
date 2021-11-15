@@ -8,6 +8,7 @@ import {
   FDateValue,
   SModal,
   SDateValue,
+  WordLength,
 } from "../../modules/atom/ATChange";
 
 //출결 변경
@@ -22,6 +23,7 @@ const AttendanceChange: FC = (): JSX.Element => {
   const [isSOpen, setIsSOpen] = useRecoilState<boolean>(SModal);
   const [fdateValue, setFdateValue] = useRecoilState<string>(FDateValue);
   const [sdateValue, setSdateValue] = useRecoilState<string>(SDateValue);
+  const [wordLength, setWordLength] = useRecoilState<number>(WordLength);
 
   for (let i = 0; i < 20; i++) {
     TestArray.push(i);
@@ -49,15 +51,21 @@ const AttendanceChange: FC = (): JSX.Element => {
     setTypeIndex(index);
   };
 
+  const checkWordLength = (e: any) => {
+    setWordLength(e.target.value.length);
+  };
+
   return (
     <S.Container>
       <S.ACContainer>
         <S.ACBox>
-          <div>
+          <span>
             <S.Title>출결 변경</S.Title>
             <S.ACColumn>
               <S.ACTitle>결석자</S.ACTitle>
-              <S.AbsentsBox></S.AbsentsBox>
+              <S.AbsentsBox>
+                <S.AddAbsents>추가</S.AddAbsents>
+              </S.AbsentsBox>
             </S.ACColumn>
             <S.ACColumn>
               <S.ACTitle>날짜</S.ACTitle>
@@ -117,12 +125,15 @@ const AttendanceChange: FC = (): JSX.Element => {
                 <S.NoteInput
                   type="text"
                   placeholder="최대 10글자로 입력해주세요 (선택)"
+                  onChange={checkWordLength}
                 />
               </S.NoteBox>
             </S.ACColumn>
             <S.AddButton type="button" value="추가하기" />
-            <S.ErrorMessage>비고의 내용이 10글자를 넘었습니다</S.ErrorMessage>
-          </div>
+            <S.ErrorMessage display={wordLength > 10 ? "block" : "none"}>
+              비고의 내용이 10글자를 넘었습니다
+            </S.ErrorMessage>
+          </span>
         </S.ACBox>
         <S.ACListBox>
           <S.Title>출결 변동사항</S.Title>
