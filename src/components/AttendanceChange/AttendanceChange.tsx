@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 import { COLOR } from "../../style/index";
@@ -16,7 +16,6 @@ const AttendanceChange: FC = (): JSX.Element => {
   const date = new Date();
   const ACListArray: string[] = ["결석일", "결석자", "종류", "신고자", "비고"];
   const TypesArray: string[] = ["외출", "현체", "귀가", "이동", "취업"];
-  const TestArray = [];
   const TypesRefs = useRef(new Array(TypesArray.length));
   const [typeIndex, setTypeIndex] = useState<number>(0);
   const [isFOpen, setIsFOpen] = useRecoilState<boolean>(FModal);
@@ -24,6 +23,8 @@ const AttendanceChange: FC = (): JSX.Element => {
   const [fdateValue, setFdateValue] = useRecoilState<string>(FDateValue);
   const [sdateValue, setSdateValue] = useRecoilState<string>(SDateValue);
   const [wordLength, setWordLength] = useRecoilState<number>(WordLength);
+
+  const TestArray = [];
 
   for (let i = 0; i < 20; i++) {
     TestArray.push(i);

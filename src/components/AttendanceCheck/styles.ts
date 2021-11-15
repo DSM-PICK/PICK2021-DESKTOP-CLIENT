@@ -39,19 +39,29 @@ export const dateText = styled.div`
 `;
 
 export const ChooseDate = styled.div`
-  width: 35%;
+  width: 36%;
   display: flex;
   justify-content: space-between;
   font-size: 20px;
   cursor: pointer;
 `;
 
-export const Date = styled.div`
-
+export const Date = styled.div<{color: string}>`
+  color: ${props => props.color};
+  transition: all 0.4s ease-out;
+  text-align: center;
+  width: 90%;
 `;
 
-export const DateIcon = styled.img<{}>`
-  transform: rotate(180deg);
+export const DateIcon = styled.div<{rotate : string}>`
+  transform: rotate(${props => props.rotate});
+  transition: all 0.2s ease-out;
+  position: relative;
+  width: 15px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 `;
 
 export const AttendancyList = styled.div``;

@@ -1,11 +1,5 @@
 import * as S from "./styles";
-import {
-  FC,
-  MutableRefObject,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../assets";
 import { COLOR } from "../../style/index";
 import {
@@ -14,6 +8,7 @@ import {
   SDateValue,
   SModal,
 } from "../../modules/atom/ATChange";
+import { CModal, CDateValue } from "../../modules/atom/ATCheck";
 import { useSetRecoilState } from "recoil";
 
 interface Props {
@@ -34,6 +29,8 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const setSDate = useSetRecoilState(SDateValue);
   const setFOpen = useSetRecoilState(FModal);
   const setSOpen = useSetRecoilState(SModal);
+  const setCDate = useSetRecoilState(CDateValue);
+  const setCOpen = useSetRecoilState(CModal);
 
   useEffect(() => {
     for (let i = 0; i < 41; i++) {
@@ -98,11 +95,12 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
     if (index === 0) {
       setFDate(selectDate);
       setFOpen(false);
-    } else if(index === 1){
+    } else if (index === 1) {
       setSDate(selectDate);
       setSOpen(false);
-    } else if(index === 2) {
-      
+    } else if (index === 2) {
+      setCDate(selectDate);
+      setCOpen(false);
     }
   };
 
