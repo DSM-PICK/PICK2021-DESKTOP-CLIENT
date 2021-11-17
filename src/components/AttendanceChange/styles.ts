@@ -100,8 +100,11 @@ export const Date = styled.div`
 export const DateText = styled.div`
   font-size: 16px;
   cursor: pointer;
+  text-align: center;
+  width: auto;
+  margin: 0 auto;
   &:hover {
-    border-bottom: 0.3px solid ${COLOR.black};
+    border-bottom: 0.3px dotted ${COLOR.black};
   }
 `;
 
@@ -115,7 +118,7 @@ export const ClassInput = styled.input`
   outline: none;
   border: none;
   font-size: 16px;
-  border-bottom: 0.3px solid ${COLOR.black};
+  border-bottom: 0.3px dotted ${COLOR.black};
 `;
 
 export const TypeBox = styled.div`

@@ -9,7 +9,7 @@ import {
   SModal,
 } from "../../modules/atom/ATChange";
 import { CModal, CDateValue } from "../../modules/atom/ATCheck";
-import { useSetRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
 interface Props {
   isOpen: boolean;
@@ -18,19 +18,19 @@ interface Props {
 
 const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const date: Date = new Date();
+  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
   const week: Array<string> = ["월", "화", "수", "목", "금"];
-  const Today: string = `${date.getFullYear()}${
-    date.getMonth() + 1
-  }${date.getDate()}`;
   const DayContainer: MutableRefObject<any> = useRef();
   const setFDate = useSetRecoilState(FDateValue);
   const setSDate = useSetRecoilState(SDateValue);
+  const setCDate = useSetRecoilState(CDateValue);
   const setFOpen = useSetRecoilState(FModal);
   const setSOpen = useSetRecoilState(SModal);
-  const setCDate = useSetRecoilState(CDateValue);
   const setCOpen = useSetRecoilState(CModal);
+  const fdateValue = useRecoilValue<string>(FDateValue);
+  const sdateValue = useRecoilValue<string>(SDateValue);
 
   useEffect(() => {
     for (let i = 0; i < 41; i++) {
@@ -47,7 +47,7 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
     for (let i = newDate; i < dateLength + newDate; i++) {
       const div = document.createElement("div");
       div.innerHTML = `${i - (newDate - 1)}`;
-      if (`${year}${month + 1}${div.innerHTML}` === Today) {
+      if (`${year}-${month + 1}-${div.innerHTML}` === Today) {
         div.style.color = `${COLOR.orange}`;
         div.style.width = "20px";
         div.style.height = "20px";
@@ -91,7 +91,7 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   };
 
   const selectCalendar = (e: any) => {
-    const selectDate = `${year}년 ${month + 1}월 ${e.target.innerHTML}일`;
+    const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
     if (index === 0) {
       setFDate(selectDate);
       setFOpen(false);
@@ -119,7 +119,7 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
       </S.CalendarHeader>
       <S.CalendarContainer>
         <S.WeekContainer>
-          {week.map((week: any, index: number) => {
+          {week.map((week: string, index: number) => {
             return <S.WeekDays key={index}>{week}</S.WeekDays>;
           })}
         </S.WeekContainer>

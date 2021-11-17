@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 import { COLOR } from "../../style/index";
@@ -32,10 +32,10 @@ const AttendanceChange: FC = (): JSX.Element => {
 
   useEffect(() => {
     setFdateValue(
-      `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     );
     setSdateValue(
-      `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     );
   }, []);
 
@@ -52,7 +52,7 @@ const AttendanceChange: FC = (): JSX.Element => {
     setTypeIndex(index);
   };
 
-  const checkWordLength = (e: any) => {
+  const checkWordLength = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWordLength(e.target.value.length);
   };
 
@@ -77,11 +77,11 @@ const AttendanceChange: FC = (): JSX.Element => {
                     onClick={() => setIsFOpen(!isFOpen)}
                     ref={(el) => (TypesRefs.current[0] = el)}
                   >
-                    {fdateValue}
+                    {`${fdateValue.split("-")[0]}년 ${fdateValue.split("-")[1]}월 ${fdateValue.split("-")[2]}일`}
                   </S.DateText>
                   <Calendar isOpen={isFOpen} index={0} />
                   <S.ClassContainer>
-                    <S.ClassInput />
+                    <S.ClassInput maxLength={1}/>
                     <div>교시</div>
                   </S.ClassContainer>
                 </S.Date>
@@ -92,11 +92,11 @@ const AttendanceChange: FC = (): JSX.Element => {
                     onClick={() => setIsSOpen(!isSOpen)}
                     ref={(el) => (TypesRefs.current[1] = el)}
                   >
-                    {sdateValue}
+                    {`${sdateValue.split("-")[0]}년 ${sdateValue.split("-")[1]}월 ${sdateValue.split("-")[2]}일`}
                   </S.DateText>
                   <Calendar isOpen={isSOpen} index={1} />
                   <S.ClassContainer>
-                    <S.ClassInput />
+                    <S.ClassInput maxLength={1}/>
                     <div>교시</div>
                   </S.ClassContainer>
                 </S.Date>
@@ -106,7 +106,7 @@ const AttendanceChange: FC = (): JSX.Element => {
               <S.ACTitle>종류</S.ACTitle>
               <S.TypeBox>
                 <S.Types>
-                  {TypesArray.map((value, index) => {
+                  {TypesArray.map((value: string, index: number) => {
                     return (
                       <S.Type
                         ref={(el) => (TypesRefs.current[index] = el)}
@@ -140,12 +140,12 @@ const AttendanceChange: FC = (): JSX.Element => {
           <S.Title>출결 변동사항</S.Title>
           <S.ACList>
             <S.ACListHeader>
-              {ACListArray.map((value, index) => {
+              {ACListArray.map((value: string, index: number) => {
                 return <S.ACListHead key={index}>{value}</S.ACListHead>;
               })}
             </S.ACListHeader>
             <S.ACListBody>
-              {TestArray.map((value) => {
+              {TestArray.map((value: number) => {
                 return (
                   <S.ACListColumns key={value}>
                     <S.ACListCells>
