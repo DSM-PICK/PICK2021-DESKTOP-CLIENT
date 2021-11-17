@@ -1,30 +1,67 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  margin: 0 140px;
+  /* height: 100vh; */
+  padding-top: 5%;
 `;
 
 export const ACContainer = styled.div`
   width: 1440px;
-  height: 800px;
   display: flex;
+  flex-direction: column;
   margin: 0 auto;
   justify-content: space-between;
 `;
 
 export const Title = styled.div`
   font-size: 24px;
+  display: inline-block;
 `;
 
-export const ChooseCalendar = styled.div`
-  width: 500px;
-  height: 80vh;
+export const ACBox = styled.div`
+  width: 1280px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+`;
+
+export const ChooseBox = styled.div`
+  width: 100%;
+  margin-top: 10%;
   display: flex;
-  align-self: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const dateText = styled.div`
+  font-size: 18px;
+`;
+
+export const ChooseDate = styled.div`
+  width: 36%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+export const Date = styled.div<{color: string}>`
+  color: ${props => props.color};
+  transition: all 0.4s ease-out;
+  text-align: center;
+  width: 90%;
+`;
+
+export const DateIcon = styled.div<{rotate : string}>`
+  transform: rotate(${props => props.rotate});
+  transition: all 0.2s ease-out;
   position: relative;
+  width: 15px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
 `;
 
 export const AttendancyList = styled.div``;

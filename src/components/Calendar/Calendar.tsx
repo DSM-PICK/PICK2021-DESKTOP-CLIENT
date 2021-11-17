@@ -2,15 +2,35 @@ import * as S from "./styles";
 import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../assets";
 import { COLOR } from "../../style/index";
+import {
+  FModal,
+  FDateValue,
+  SDateValue,
+  SModal,
+} from "../../modules/atom/ATChange";
+import { CModal, CDateValue } from "../../modules/atom/ATCheck";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
-const Calendar: FC = (): JSX.Element => {
+interface Props {
+  isOpen: boolean;
+  index: number;
+}
+
+const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const date: Date = new Date();
+  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
-  const [selectedDate, setSelectedDate] = useState<any>();
   const week: Array<string> = ["월", "화", "수", "목", "금"];
-  const Today: string = `${date.getFullYear()}${date.getMonth() + 1}${date.getDate()}`;
   const DayContainer: MutableRefObject<any> = useRef();
+  const setFDate = useSetRecoilState(FDateValue);
+  const setSDate = useSetRecoilState(SDateValue);
+  const setCDate = useSetRecoilState(CDateValue);
+  const setFOpen = useSetRecoilState(FModal);
+  const setSOpen = useSetRecoilState(SModal);
+  const setCOpen = useSetRecoilState(CModal);
+  const fdateValue = useRecoilValue<string>(FDateValue);
+  const sdateValue = useRecoilValue<string>(SDateValue);
 
   useEffect(() => {
     for (let i = 0; i < 41; i++) {
@@ -27,15 +47,16 @@ const Calendar: FC = (): JSX.Element => {
     for (let i = newDate; i < dateLength + newDate; i++) {
       const div = document.createElement("div");
       div.innerHTML = `${i - (newDate - 1)}`;
-      if (`${year}${month + 1}${div.innerHTML}` === Today) {
-        div.style.backgroundColor = `${COLOR.orange}`;
-        div.style.width = "28px";
-        div.style.height = "28px";
+      if (`${year}-${month + 1}-${div.innerHTML}` === Today) {
+        div.style.color = `${COLOR.orange}`;
+        div.style.width = "20px";
+        div.style.height = "20px";
         div.style.borderRadius = "100%";
-        div.style.color = `${COLOR.white}`;
+        div.style.cursor = "pointer";
+        div.style.fontSize = "15px";
       }
       DayContainer.current.childNodes[i].insertBefore(div, null);
-      div.onclick = selectDate;
+      div.onclick = selectCalendar;
     }
   };
 
@@ -69,14 +90,22 @@ const Calendar: FC = (): JSX.Element => {
     }
   };
 
-  const selectDate = (e:any) => {
-    const selectedDate = `${year} ${month + 1} ${e.target.innerHTML}`;
-    setSelectedDate(selectedDate);
-    
-  }
+  const selectCalendar = (e: any) => {
+    const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
+    if (index === 0) {
+      setFDate(selectDate);
+      setFOpen(false);
+    } else if (index === 1) {
+      setSDate(selectDate);
+      setSOpen(false);
+    } else if (index === 2) {
+      setCDate(selectDate);
+      setCOpen(false);
+    }
+  };
 
   return (
-    <S.Container>
+    <S.Container display={isOpen ? "block" : "none"}>
       <S.CalendarHeader>
         <S.Prev onClick={prevMonth}>
           <img src={Prev} />
@@ -90,7 +119,7 @@ const Calendar: FC = (): JSX.Element => {
       </S.CalendarHeader>
       <S.CalendarContainer>
         <S.WeekContainer>
-          {week.map((week: any, index: number) => {
+          {week.map((week: string, index: number) => {
             return <S.WeekDays key={index}>{week}</S.WeekDays>;
           })}
         </S.WeekContainer>
