@@ -8,6 +8,7 @@ import {
   AttendanceChangePage,
   OutingListPage,
   AttendanceChangeListPage,
+  StudentListPage,
 } from "../Pages";
 const MainRouter: FC = (): JSX.Element => {
   return (
@@ -28,6 +29,7 @@ const MainRouter: FC = (): JSX.Element => {
           path="/attendancechangelist"
           component={AttendanceChangeListPage}
         />
+        <Route exact path="/studentlist" component={StudentListPage} />
       </Switch>
     </>
   );

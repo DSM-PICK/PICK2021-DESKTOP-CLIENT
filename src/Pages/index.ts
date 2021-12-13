@@ -5,3 +5,4 @@ export { default as UserInfoPage} from './UserInfo/UserInfoPage';
 export { default as AttendanceCheckPage } from "./AttendanceCheck/AttendanceCheckPage";
 export { default as AttendanceChangePage } from "./AttendanceChange/AttendanceChangePage";
 export { default as AttendanceChangeListPage } from "./ChangeList/AttendanceChangeListPage";
+export { default as StudentListPage } from './StudentList/StudentListPage'
