@@ -11,6 +11,7 @@ interface Props {
   Today: string;
   month: number;
   year: number;
+  index: number
 }
 
 const Day: FC<Props> = ({
@@ -20,6 +21,7 @@ const Day: FC<Props> = ({
   floor3,
   floor4,
   Today,
+  index
 }) => {
   const [date, setDate] = useState<string | number>("");
   const [type, setType] = useState<string>();
@@ -45,7 +47,7 @@ const Day: FC<Props> = ({
   };
 
   return (
-    <S.Days>
+    <S.Days onClick={() => console.log(index)}>
       <S.DayTypeContainer>
         <S.Date
           backgroundColor={

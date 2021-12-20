@@ -7,7 +7,7 @@ const ManageSchedule: FC = (): JSX.Element => {
   const [editStatus, setEditStatus] = useState<boolean>(false);
 
   return (
-    <S.Container>
+    <S.Wrapper>
       <S.MSContainer>
         <S.CTContainer>
           <S.PageTitle>일정관리</S.PageTitle>
@@ -27,7 +27,7 @@ const ManageSchedule: FC = (): JSX.Element => {
         </S.CTContainer>
         <Calendar editStatus={editStatus}/>
       </S.MSContainer>
-    </S.Container>
+    </S.Wrapper>
   );
 };
 

@@ -4,12 +4,15 @@ import { COLOR } from "../../../style";
 export const Days = styled.div`
   text-align: left;
   border: 1px solid ${COLOR.grey};
+  aspect-ratio: 3 / 2;
+  width: 100%;
 `;
 
 export const DayTypeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 8px;
+  margin: 8px 8px 0 8px;
 `;
 
 export const Date = styled.div<{ backgroundColor: string; color: string }>`
@@ -44,4 +47,5 @@ export const TeacherInput = styled.div`
   text-decoration: none;
   outline: none;
   font-size: 18px;
+  margin: 3px;
 `;

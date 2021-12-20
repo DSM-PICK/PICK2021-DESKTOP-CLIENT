@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { COLOR } from "../../style/index";
 
 export const Container = styled.div`
-  height: 90vh;
+  min-width: 1280px;
   display: flex;
   width: 100vw;
   justify-content: center;
@@ -14,6 +14,7 @@ export const ACContainer = styled.div`
   height: 800px;
   display: grid;
   grid-template-rows: 40% 60%;
+  margin-top: 60px;
 `;
 
 export const Title = styled.div`
@@ -160,8 +161,6 @@ export const NoteInput = styled.input`
   text-align: center;
 `;
 
-//------------------------------------
-
 export const ACListBox = styled.div`
   padding-top: 50px;
   width: 100%;
@@ -178,7 +177,7 @@ export const ACListHeader = styled.div`
 export const ACListBody = styled.div`
   display: grid;
   grid-template-rows: repeat(10, 1fr);
-  height: 90%;
+  height: 300px;
   width: 100%;
   overflow: scroll;
 `;
