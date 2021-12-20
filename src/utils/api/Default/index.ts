@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const baseURL = "https://api-2021.dsm-pick.com";
+
 export const getRequest = () => {
   const request = axios.create({
     timeout: 10000,
@@ -22,7 +24,7 @@ export const getRequestWithToken = (
       baseURL: "test",
       headers: {
         Authorization: `Bearer ${token}`,
-        witåhCredentials: true,
+        withCredentials: true,
       },
       responseType: type,
       withCredentials: true,
