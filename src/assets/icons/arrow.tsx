@@ -4,8 +4,6 @@ import { useRecoilValue } from "recoil";
 
 const Arrow = () => {
 
-    const isCOpen = useRecoilValue(CModal);
-
   return (
     <svg
       width="16"
@@ -16,7 +14,7 @@ const Arrow = () => {
     >
       <path
         d="M0 0H16L8 8L0 0Z"
-        fill={isCOpen ? `${COLOR.gray}` : `${COLOR.black}`}
+        fill={COLOR.black}
       />
     </svg>
   );

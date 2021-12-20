@@ -18,9 +18,7 @@ const MainRouter: FC = (): JSX.Element => {
         <Route exact path="/schedule" component={ManageSchedulePage} />
         <Route exact path="/outing-list" component={OutingListPage} />
         <Route exact path="/manageschedule" component={ManageSchedulePage} />
-        <Route exact path="/userinfo" component={UserInfoPage} />
-        
- 
+        <Route exact path="/" component={UserInfoPage} />
         <Route exact path="/studentlist" component={StudentListPage} />
         <Route exact path="/attendancechangelist" component={AttendanceChangeListPage}/>
         <Route exact path="/atcheck" component={AttendanceCheckPage} />

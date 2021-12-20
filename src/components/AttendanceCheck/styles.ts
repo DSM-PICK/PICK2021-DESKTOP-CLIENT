@@ -1,16 +1,12 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
-  /* height: 100vh; */
-  padding-top: 5%;
-`;
-
 export const ACContainer = styled.div`
   width: 1440px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   justify-content: space-between;
+  margin-top: 60px;
 `;
 
 export const Title = styled.div`
@@ -62,10 +58,4 @@ export const DateIcon = styled.div<{rotate : string}>`
   display: flex;
   justify-content: center;
   align-self: center;
-`;
-
-export const AttendancyList = styled.div``;
-
-export const Options = styled.div`
-  
 `;

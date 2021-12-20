@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../style/index";
 
-export const Container = styled.div`
-  height: 90vh;
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 0 140px;
 `;
 
 export const MSContainer = styled.div`
+  padding-top: 60px;
   width: 1440px;
   height: 800px;
   display: flex;
@@ -29,7 +29,7 @@ export const DownloadSchedule = styled.input`
   outline: none;
   width: 130px;
   height: 40px;
-  background-color: #ffffff;
+  background-color: ${COLOR.white};
   color: ${COLOR.orange};
   border-radius: 5px;
   cursor: pointer;

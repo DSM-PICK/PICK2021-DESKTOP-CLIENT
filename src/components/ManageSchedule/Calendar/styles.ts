@@ -76,7 +76,7 @@ export const DayContainer = styled.div`
   text-align: center;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  height: 768px;
+  height: 100%;
 `;
 
 export const WeekDays = styled.div`

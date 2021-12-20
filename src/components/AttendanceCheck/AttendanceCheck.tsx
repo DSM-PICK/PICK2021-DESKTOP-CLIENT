@@ -1,7 +1,6 @@
 import { FC, useEffect } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
-// import { Arrow } from "../../assets/index";
 import Arrow from "../../assets/icons/arrow";
 import { CDateValue, CModal } from "../../modules/atom/ATCheck";
 import { useRecoilState } from "recoil";
@@ -15,43 +14,42 @@ const AttendanceCheck: FC = (): JSX.Element => {
 
   useEffect(() => {
     setCDateValue(
-      `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     );
   }, []);
 
   return (
-    <>
-      <S.Container>
-        <S.ACContainer>
-          <S.Title>출석 조회</S.Title>
-          <S.ACBox>
-            <S.ChooseBox>
-              <S.dateText>날짜</S.dateText>
-              <S.ChooseDate>
-                <S.Date
-                  onClick={() => {
-                    setIsCOpen(!isCOpen);
-                  }}
-                  color={isCOpen ? `${COLOR.gray}` : `${COLOR.black}`}
-                >
-                  {cdateValue}
-                </S.Date>
-                <Calendar isOpen={isCOpen} index={2} />
-                <S.DateIcon
-                  onClick={() => {
-                    setIsCOpen(!isCOpen);
-                  }}
-                  rotate={isCOpen ? "0" : "-180deg"}
-                >
-                  <Arrow />
-                </S.DateIcon>
-              </S.ChooseDate>
-            </S.ChooseBox>
-            <S.AttendancyList></S.AttendancyList>
-          </S.ACBox>
-        </S.ACContainer>
-      </S.Container>
-    </>
+    <div>
+      <S.ACContainer>
+        <S.Title>출석 조회</S.Title>
+        <S.ACBox>
+          <S.ChooseBox>
+            <S.dateText>날짜</S.dateText>
+            <S.ChooseDate>
+              <S.Date
+                onClick={() => {
+                  setIsCOpen(!isCOpen);
+                }}
+                color={COLOR.black}
+              >
+                {`${cdateValue.split("-")[0]}년 ${cdateValue.split("-")[1]}월 ${
+                  cdateValue.split("-")[2]
+                }일`}
+              </S.Date>
+              <Calendar isOpen={isCOpen} index={2} />
+              <S.DateIcon
+                onClick={() => {
+                  setIsCOpen(!isCOpen);
+                }}
+                rotate={isCOpen ? "0" : "-180deg"}
+              >
+                <Arrow />
+              </S.DateIcon>
+            </S.ChooseDate>
+          </S.ChooseBox>
+        </S.ACBox>
+      </S.ACContainer>
+    </div>
   );
 };
 

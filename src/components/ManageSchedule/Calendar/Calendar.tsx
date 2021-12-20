@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { FC, useEffect, useState } from "react";
+import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { prevPointer, nextPointer } from "../../../assets";
 import Day from "../Day/Day";
 import { data } from "../../../test/testData";
@@ -15,7 +15,11 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
   const [TData, setTData] = useState<Array<string>>(data);
   const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
+  // const DayContainer: MutableRefObject<any> = useRef<any>(new Array(NData.length));
+  // const DayContainer = useRef(null);
 
   const dummyData = {
     date: "",
@@ -112,6 +116,7 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
                 Today={Today}
                 month={month}
                 year={year}
+                index={index}
               />
             );
           })}
