@@ -3,6 +3,7 @@ import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { prevPointer, nextPointer } from "../../../assets";
 import Day from "../Day/Day";
 import { data } from "../../../test/testData";
+import { getSchedules } from '../../../utils/api/Calendar/index';
 
 interface Props {
   editStatus: boolean;
@@ -54,6 +55,7 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
 
   useEffect(() => {
     addDummyData(year, month);
+    // getSchedules(window.localStorage.getItem('access_token') ,month, year)
   }, []);
 
   const nextMonth = () => {
