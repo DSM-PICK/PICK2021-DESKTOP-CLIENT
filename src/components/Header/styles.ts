@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { COLOR } from '../../style/index';
+import { Link } from 'react-router-dom';
 export const Container = styled.div`
     width: 100%;
     height: 72px;
@@ -19,9 +20,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `;
-export const Register = styled.div`
+export const Register = styled(Link)`
     width: 84px;
-    height: 90%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,12 +31,23 @@ export const Register = styled.div`
     cursor: pointer;
     box-sizing: border-box;
     padding-top: 24px;
+    color:black;
+    text-decoration: none;
 `;
-export const LogoutBtn = styled(Register)`
-    color: #ff0000;
+export const LogoutBtn = styled.div`
+    width: 84px;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    box-sizing: border-box;
+    padding-top: 24px;
+    color: red;
 `;
 export const RegisterBotLine = styled.div`
-    width: 52px;
+    width: 70px;
     border: 2px solid black;
-    display: none;
 `
