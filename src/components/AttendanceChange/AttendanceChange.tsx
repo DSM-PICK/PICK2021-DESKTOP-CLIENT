@@ -9,7 +9,7 @@ import {
   SModal,
   SDateValue,
   WordLength,
-} from "../../modules/atom/ATChange";
+} from "../../state/atom/ATChange";
 
 //출결 변경
 const AttendanceChange: FC = (): JSX.Element => {
@@ -57,16 +57,16 @@ const AttendanceChange: FC = (): JSX.Element => {
   };
 
   return (
-    <S.Container>
+    <S.Wrapper>
       <S.ACContainer>
-        <S.ACBox>
-          <span>
+        <div className="acbox">
+          <div>
             <S.Title>출결 변경</S.Title>
             <S.ACColumn>
               <S.ACTitle>결석자</S.ACTitle>
-              <S.AbsentsBox>
+              <div>
                 <S.AddAbsents>추가</S.AddAbsents>
-              </S.AbsentsBox>
+              </div>
             </S.ACColumn>
             <S.ACColumn>
               <S.ACTitle>날짜</S.ACTitle>
@@ -77,13 +77,15 @@ const AttendanceChange: FC = (): JSX.Element => {
                     onClick={() => setIsFOpen(!isFOpen)}
                     ref={(el) => (TypesRefs.current[0] = el)}
                   >
-                    {`${fdateValue.split("-")[0]}년 ${fdateValue.split("-")[1]}월 ${fdateValue.split("-")[2]}일`}
+                    {`${fdateValue.split("-")[0]}년 ${
+                      fdateValue.split("-")[1]
+                    }월 ${fdateValue.split("-")[2]}일`}
                   </S.DateText>
                   <Calendar isOpen={isFOpen} index={0} />
-                  <S.ClassContainer>
-                    <S.ClassInput maxLength={1}/>
+                  <div className="classContainer">
+                    <S.ClassInput maxLength={1} />
                     <div>교시</div>
-                  </S.ClassContainer>
+                  </div>
                 </S.Date>
                 <span>~</span>
                 {/* 두번째 날짜 */}
@@ -92,13 +94,15 @@ const AttendanceChange: FC = (): JSX.Element => {
                     onClick={() => setIsSOpen(!isSOpen)}
                     ref={(el) => (TypesRefs.current[1] = el)}
                   >
-                    {`${sdateValue.split("-")[0]}년 ${sdateValue.split("-")[1]}월 ${sdateValue.split("-")[2]}일`}
+                    {`${sdateValue.split("-")[0]}년 ${
+                      sdateValue.split("-")[1]
+                    }월 ${sdateValue.split("-")[2]}일`}
                   </S.DateText>
                   <Calendar isOpen={isSOpen} index={1} />
-                  <S.ClassContainer>
-                    <S.ClassInput maxLength={1}/>
+                  <div className="classContainer">
+                    <S.ClassInput maxLength={1} />
                     <div>교시</div>
-                  </S.ClassContainer>
+                  </div>
                 </S.Date>
               </S.DateBox>
             </S.ACColumn>
@@ -130,12 +134,14 @@ const AttendanceChange: FC = (): JSX.Element => {
                 />
               </S.NoteBox>
             </S.ACColumn>
+
             <S.AddButton type="button" value="추가하기" />
             <S.ErrorMessage display={wordLength > 10 ? "block" : "none"}>
               비고의 내용이 10글자를 넘었습니다
             </S.ErrorMessage>
-          </span>
-        </S.ACBox>
+          </div>
+        </div>
+
         <S.ACListBox>
           <S.Title>출결 변동사항</S.Title>
           <S.ACList>
@@ -167,7 +173,7 @@ const AttendanceChange: FC = (): JSX.Element => {
           </S.ACList>
         </S.ACListBox>
       </S.ACContainer>
-    </S.Container>
+    </S.Wrapper>
   );
 };
 
