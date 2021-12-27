@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../style/index";
 
-export const Container = styled.div`
+export const Wrapper = styled.div`
   min-width: 1280px;
   display: flex;
   width: 100vw;
@@ -15,16 +15,16 @@ export const ACContainer = styled.div`
   display: grid;
   grid-template-rows: 40% 60%;
   margin-top: 60px;
+
+  & .acbox {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const Title = styled.div`
   font-size: 24px;
   margin-bottom: 16px;
-`;
-
-export const ACBox = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 export const AddButton = styled.input`
@@ -55,21 +55,19 @@ export const ErrorMessage = styled.div<{ display: string }>`
 export const ACColumn = styled.div`
   height: 30px;
   margin: 20px 0 20px 30px;
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 20% 80%;
 `;
 
 export const ACTitle = styled.div`
   font-size: 16px;
   width: 70px;
   margin-right: 50px;
-  display: flex;
-  align-self: center;
+    display: flex;
+    align-self: center;
 `;
 
-export const AbsentsBox = styled.div`
-  
-`;
 
 export const AddAbsents = styled.div`
   cursor: pointer;
@@ -96,21 +94,21 @@ export const Date = styled.div`
   display: flex;
   justify-content: space-between;
   width: 175px;
+
+  & .classContainer {
+    display: flex;
+  }
 `;
 
 export const DateText = styled.div`
-  font-size: 16px;
   cursor: pointer;
+  font-size: 16px;
   text-align: center;
   width: auto;
   margin: 0 auto;
   &:hover {
     border-bottom: 0.3px dotted ${COLOR.black};
   }
-`;
-
-export const ClassContainer = styled.div`
-  display: flex;
 `;
 
 export const ClassInput = styled.input`
