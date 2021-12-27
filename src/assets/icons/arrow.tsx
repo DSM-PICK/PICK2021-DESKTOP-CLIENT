@@ -1,4 +1,4 @@
-import { CModal } from "../../modules/atom/ATCheck";
+import { CModal } from "../../state/atom/ATCheck";
 import { COLOR } from "../../style/index";
 import { useRecoilValue } from "recoil";
 

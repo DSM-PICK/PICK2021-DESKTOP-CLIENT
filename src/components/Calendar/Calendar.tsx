@@ -7,9 +7,9 @@ import {
   FDateValue,
   SDateValue,
   SModal,
-} from "../../modules/atom/ATChange";
-import { CModal, CDateValue } from "../../modules/atom/ATCheck";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+} from "../../state/atom/ATChange";
+import { CModal, CDateValue } from "../../state/atom/ATCheck";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 
 interface Props {
   isOpen: boolean;
@@ -22,15 +22,15 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
   const week: Array<string> = ["월", "화", "수", "목", "금"];
-  const DayContainer: MutableRefObject<any> = useRef();
+  const DayContainer: MutableRefObject<any> = useRef()
   const setFDate = useSetRecoilState(FDateValue);
-  const setSDate = useSetRecoilState(SDateValue);
-  const setCDate = useSetRecoilState(CDateValue);
   const setFOpen = useSetRecoilState(FModal);
+  const setSDate = useSetRecoilState(SDateValue);
   const setSOpen = useSetRecoilState(SModal);
+  const setCDate = useSetRecoilState(CDateValue);
   const setCOpen = useSetRecoilState(CModal);
-  const fdateValue = useRecoilValue<string>(FDateValue);
-  const sdateValue = useRecoilValue<string>(SDateValue);
+  const FDate = useRecoilValue<string>(FDateValue);
+  const SDate = useRecoilValue<string>(SDateValue);
 
   useEffect(() => {
     for (let i = 0; i < 41; i++) {

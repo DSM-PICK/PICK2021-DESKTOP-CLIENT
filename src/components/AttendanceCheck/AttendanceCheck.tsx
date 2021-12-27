@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import Calendar from "../Calendar/Calendar";
 import * as S from "./styles";
 import Arrow from "../../assets/icons/arrow";
-import { CDateValue, CModal } from "../../modules/atom/ATCheck";
+import { CDateValue, CModal } from "../../state/atom/ATCheck";
 import { useRecoilState } from "recoil";
 import { COLOR } from "../../style/index";
 
