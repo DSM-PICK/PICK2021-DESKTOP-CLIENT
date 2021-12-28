@@ -1,9 +1,9 @@
-import { getRequestWithToken } from "../Default";
+import instance from "../Default";
 
-export const getSchedules = async (access_token: string, year: number, month: number) => {
+export const getSchedules = async (year : number, month : number) => {
   try {
-    const request = getRequestWithToken(access_token);
-    await request.get(`/schedule/list/$${year}/${month}`);
+    const request = await instance.get(`/schedule/list/${year}/${month + 1}`);
+    return request;
   } catch (error) {
     throw error;
   }

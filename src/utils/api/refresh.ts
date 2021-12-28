@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { request } from "./Default";
 
 export const refresh = async (config: AxiosRequestConfig) => {
@@ -18,7 +18,7 @@ export const refresh = async (config: AxiosRequestConfig) => {
   return config;
 };
 
-export const refreshError = (err: any) => {
+export const refreshError = (err: AxiosError) => {
   localStorage.removeItem("access_token");
   localStorage.removeItem("refresh_token");
 };
