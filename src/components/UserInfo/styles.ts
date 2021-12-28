@@ -13,7 +13,7 @@ export const TeacherInfoWrapper = styled.div`
 export const TeacherName = styled.h1`
     font-size: 80px;
     font-weight: 500;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 `;
 export const TeacherStatus = styled.div`
     width: 270px;
