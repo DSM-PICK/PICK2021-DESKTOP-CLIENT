@@ -27,7 +27,6 @@ export const getRequestWithToken = (
 };
 
 const instance = axios.create({
-  baseURL: "",
   timeout: 100000,
 });
 
@@ -37,7 +36,7 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error: any) => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 );
