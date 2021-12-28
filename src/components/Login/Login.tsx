@@ -6,18 +6,20 @@ import { pickLogo } from "../../assets";
 const Login: FC = (): JSX.Element => {
   const [display, setDisplay] = useState<string>("none");
   const idRef = useRef<HTMLInputElement>(null);
-  const [id, setId] = useState<string>(
-    `${window.localStorage.getItem("pick-id")}`
+  const [id, setId] = useState<string | any>(
+    window.localStorage.getItem("pick_id")
+      ? window.localStorage.getItem("pick_id")
+      : ""
   );
   const pwRef = useRef<HTMLInputElement>(null);
-  const checkboxRef = useRef<HTMLInputElement | null>(null);
+  const checkboxRef = useRef<HTMLInputElement>(null);
 
   const requestLoginApi = () => {
     loginRequest(idRef.current?.value, pwRef.current?.value)
       .then((res) => {
         console.log(res.status === 200);
         if (res.status === 200 && checkboxRef.current?.checked) {
-          localStorage.setItem("pick-id", id);
+          localStorage.setItem("pick_id", id);
         }
         window.location.href = "/";
       })
