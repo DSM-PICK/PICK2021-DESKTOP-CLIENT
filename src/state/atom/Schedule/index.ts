@@ -7,5 +7,5 @@ export const scheduleEditStatus = atom({
 
 export const selectedIndex = atom({
   key: "index",
-  default: null,
+  default: 0,
 })
