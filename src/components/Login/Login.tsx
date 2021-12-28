@@ -1,25 +1,34 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import * as S from "./styles";
-import { Link } from "react-router-dom";
 import { loginRequest } from "../../utils/api/Login";
 import { pickLogo } from "../../assets";
 
 const Login: FC = (): JSX.Element => {
   const [display, setDisplay] = useState<string>("none");
   const idRef = useRef<HTMLInputElement>(null);
+  const [id, setId] = useState<string>(
+    `${window.localStorage.getItem("pick-id")}`
+  );
   const pwRef = useRef<HTMLInputElement>(null);
+  const checkboxRef = useRef<HTMLInputElement | null>(null);
 
   const requestLoginApi = () => {
-    loginRequest(idRef.current?.value, pwRef.current?.value).then(() => {
-      window.location.href = "/";
-    }).catch((err) => {
-      if(err.response.status === 401 || err.response.status === 403) {
-        setDisplay("default")
-      } 
-      if(err.response.status === 400) {
-        alert("아이디 또는 비밀번호를 입력해주세요.");
-      }
-    })
+    loginRequest(idRef.current?.value, pwRef.current?.value)
+      .then((res) => {
+        console.log(res.status === 200);
+        if (res.status === 200 && checkboxRef.current?.checked) {
+          localStorage.setItem("pick-id", id);
+        }
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        if (err.response.status === 401 || err.response.status === 403) {
+          setDisplay("default");
+        }
+        if (err.response.status === 400) {
+          alert("아이디 또는 비밀번호를 입력해주세요.");
+        }
+      });
   };
 
   return (
@@ -28,7 +37,13 @@ const Login: FC = (): JSX.Element => {
       <S.LoginContainer>
         <S.Title>로그인</S.Title>
         <S.LoginForm>
-          <S.LoginInput placeholder={"아이디"} type="text" ref={idRef} />
+          <S.LoginInput
+            placeholder={"아이디"}
+            type="text"
+            onChange={(e) => setId(e.target.value)}
+            ref={idRef}
+            value={id}
+          />
           <S.PasswordInput
             placeholder={"비밀번호"}
             type="password"
@@ -37,7 +52,7 @@ const Login: FC = (): JSX.Element => {
           <S.UserHelpContainer>
             <S.SavdIdCheckBox>
               <S.Label htmlFor="checkbox">
-                <S.Input type="checkbox" id="checkbox" />
+                <S.Input type="checkbox" id="checkbox" ref={checkboxRef} />
                 <S.Box />
               </S.Label>
               <label htmlFor="checkbox">아이디 저장</label>
