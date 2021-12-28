@@ -5,7 +5,6 @@ axios.defaults.baseURL = "https://api-2021.dsm-pick.com";
 
 export const request = axios.create({
   timeout: 10000,
-  withCredentials: true,
 });
 
 export const getRequestWithToken = (
