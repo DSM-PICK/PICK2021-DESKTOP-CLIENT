@@ -7,6 +7,16 @@ export const Container = styled.div`
   height: 900px;
   display: flex;
   align-items: center;
+  /* flex-direction: column; */
+  img {
+    width: 240px;
+    height: 56px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 60px;
+  }
 `;
 
 export const LoginContainer = styled.div`
@@ -15,13 +25,14 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   text-align: center;
+  position: relative;
 `;
 
 export const Title = styled.div`
   font-weight: 400;
   font-size: 32px;
   padding: 16px 0;
-  border-bottom: 2px solid #000000;
+  border-bottom: 1px solid #000000;
 `;
 
 export const LoginForm = styled.form`
@@ -55,6 +66,9 @@ export const UserHelpContainer = styled.div`
 
 export const SavdIdCheckBox = styled.div`
   display: flex;
+  label {
+    cursor: pointer;
+  }
 `;
 
 export const Label = styled.label`
@@ -120,7 +134,12 @@ export const Register = styled(Link)`
   cursor: pointer;
 `;
 
-export const LoginFail = styled.div`
+export const LoginFail = styled.div<{ display: string }>`
+  display: ${props => props.display};
   color: ${COLOR.red};
-  margin-top: 50px;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 `;
