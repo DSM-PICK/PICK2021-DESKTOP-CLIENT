@@ -4,10 +4,10 @@ import * as S from "./styles";
 
 const RegisterArr = [
   { link: "/", title: "홈" },
-  { link: "/atchecking", title: "출석체크" },
+  { link: "/atcheck", title: "출석체크" },
   { link: "/atchange", title: "출결변경" },
   { link: "/schedule", title: "일정관리" },
-  { link: "/atcheck", title: "출석조회" },
+  { link: "/atview", title: "출석조회" },
   { link: "/template", title: "템플릿" },
 ];
 const Header: FC = (): JSX.Element => {
