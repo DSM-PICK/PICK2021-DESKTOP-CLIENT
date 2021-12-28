@@ -25,6 +25,7 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   margin: 0 auto;
   text-align: center;
+  position: relative;
 `;
 
 export const Title = styled.div`
@@ -136,5 +137,9 @@ export const Register = styled(Link)`
 export const LoginFail = styled.div<{ display: string }>`
   display: ${props => props.display};
   color: ${COLOR.red};
-  margin-top: 50px;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 `;
