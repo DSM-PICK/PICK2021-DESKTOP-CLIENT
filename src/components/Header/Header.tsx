@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useHistory } from "react-router-dom";
 import * as S from "./styles";
 
 const RegisterArr = [
@@ -10,11 +11,17 @@ const RegisterArr = [
   { link: "/template", title: "템플릿" },
 ];
 const Header: FC = (): JSX.Element => {
+  const history = useHistory();
   const checkLink = (index: number) => {
     const newURL = window.location.href;
     if (newURL.substr(21) === RegisterArr[index].link) {
       return <S.RegisterBotLine />;
     }
+  };
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    alert("로그아웃 되었습니다.");
+    history.push("/login");
   };
   return (
     <S.Container>
@@ -26,7 +33,7 @@ const Header: FC = (): JSX.Element => {
           </S.RegisterBox>
         ))}
       </S.RegisterContainer>
-      <S.LogoutBtn>로그아웃</S.LogoutBtn>
+      <S.LogoutBtn onClick={logout}>로그아웃</S.LogoutBtn>
     </S.Container>
   );
 };
