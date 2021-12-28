@@ -2,10 +2,12 @@ import { FC, useState } from "react";
 import Calendar from "./Calendar/Calendar";
 import * as S from "./styles";
 import ChooseTeacher from "./ChooseTeacher/ChooseTeacher";
+import { useRecoilState } from "recoil";
+import { scheduleEditStatus } from "../../state/atom/Schedule";
 
 const ManageSchedule: FC = (): JSX.Element => {
-  const [editStatus, setEditStatus] = useState<boolean>(false);
-
+  const [editStatus, setEditStatus] = useRecoilState<boolean>(scheduleEditStatus);
+  
   return (
     <S.Wrapper>
       <S.MSContainer>

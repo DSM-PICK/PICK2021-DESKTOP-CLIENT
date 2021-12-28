@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../../style";
 
-export const Days = styled.div`
+export const Days = styled.div<{border : string, cursor : string}>`
   text-align: left;
-  border: 1px solid ${COLOR.grey};
+  border: 1px solid ${props => props.border};
   aspect-ratio: 3 / 2;
   width: 100%;
+  cursor: ${props => props.cursor};
 `;
 
 export const DayTypeContainer = styled.div`

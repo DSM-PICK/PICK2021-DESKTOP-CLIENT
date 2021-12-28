@@ -1,6 +1,11 @@
 import { FC, useEffect, useState } from "react";
 import * as S from "./styles";
 import { COLOR } from "../../../style/index";
+import {
+  selectedIndex,
+  scheduleEditStatus,
+} from "../../../state/atom/Schedule";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 interface Props {
   fullDate: string;
@@ -11,7 +16,7 @@ interface Props {
   Today: string;
   month: number;
   year: number;
-  index: number
+  index: number;
 }
 
 const Day: FC<Props> = ({
@@ -21,10 +26,12 @@ const Day: FC<Props> = ({
   floor3,
   floor4,
   Today,
-  index
+  index,
 }) => {
   const [date, setDate] = useState<string | number>("");
   const [type, setType] = useState<string>();
+  const [colorIndex, setColorIndex] = useRecoilState(selectedIndex);
+  const editStatus = useRecoilValue(scheduleEditStatus);
 
   useEffect(() => {
     getDate();
@@ -43,11 +50,21 @@ const Day: FC<Props> = ({
       case "AFTER_SCHOOL":
         setType("자습");
         break;
-    } 
+    }
   };
 
+  useEffect(() => {
+    console.log(colorIndex);
+    console.log(index);
+    console.log(editStatus);
+  }, [colorIndex])
+
   return (
-    <S.Days onClick={() => console.log(index)}>
+    <S.Days
+      border={index === colorIndex  && editStatus ? `${COLOR.red}` : `${COLOR.grey}`}
+      onClick={() => {editStatus ? setColorIndex(index) : setColorIndex(colorIndex)}}
+      cursor={editStatus ? "pointer" : "default"}
+    >
       <S.DayTypeContainer>
         <S.Date
           backgroundColor={
@@ -57,7 +74,11 @@ const Day: FC<Props> = ({
         >
           {date}
         </S.Date>
-        <S.DayType color={Today === fullDate ? `${COLOR.orange}`: `${COLOR.black}`}>{type}</S.DayType>
+        <S.DayType
+          color={Today === fullDate ? `${COLOR.orange}` : `${COLOR.black}`}
+        >
+          {type}
+        </S.DayType>
       </S.DayTypeContainer>
       <S.InputContainer>
         <S.TeacherInput>{floor2}</S.TeacherInput>

@@ -3,7 +3,7 @@ import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
 import { prevPointer, nextPointer } from "../../../assets";
 import Day from "../Day/Day";
 import { data } from "../../../test/testData";
-import { getSchedules } from '../../../utils/api/Calendar/index';
+import { getSchedules } from '../../../utils/api/Calendar';
 
 interface Props {
   editStatus: boolean;
@@ -16,11 +16,7 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
   const [TData, setTData] = useState<Array<string>>(data);
   const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()}`;
-  // const DayContainer: MutableRefObject<any> = useRef<any>(new Array(NData.length));
-  // const DayContainer = useRef(null);
+  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
   const dummyData = {
     date: "",
@@ -55,8 +51,13 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
 
   useEffect(() => {
     addDummyData(year, month);
-    // getSchedules(window.localStorage.getItem('access_token') ,month, year)
   }, []);
+
+  useEffect(() => {
+    getSchedules(year, month).then((res) => {
+      console.log(res);
+    })
+  }, [month])
 
   const nextMonth = () => {
     setMonth(month + 1);
