@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import * as S from "./styles";
 import { COLOR } from "../../../style/index";
+import { selectedIndex } from "../../../state/atom/Schedule";
+import { useRecoilState } from 'recoil';
 
 interface Props {
   fullDate: string;
@@ -25,6 +27,7 @@ const Day: FC<Props> = ({
 }) => {
   const [date, setDate] = useState<string | number>("");
   const [type, setType] = useState<string>();
+  const [colorIndex, setColorIndex] = useRecoilState(selectedIndex);
 
   useEffect(() => {
     getDate();

@@ -9,7 +9,7 @@ import {
   SModal,
 } from "../../state/atom/ATChange";
 import { CModal, CDateValue } from "../../state/atom/ATCheck";
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
 interface Props {
   isOpen: boolean;
