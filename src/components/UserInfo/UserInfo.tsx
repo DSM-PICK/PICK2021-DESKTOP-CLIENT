@@ -1,7 +1,18 @@
 import React from "react";
 import * as S from "./styles";
 import { Logo, Line } from "../../assets";
+import { getUserInfo } from "../../utils/api/UserInfo";
+import { useEffect } from "react";
 const UserInfo = () => {
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      return;
+    }
+  }, []);
+  const logout = () => {
+    localStorage.removeItem("access_token");
+  };
   return (
     <S.Container>
       <S.TeacherInfoWrapper>
@@ -10,7 +21,7 @@ const UserInfo = () => {
         <S.TeacherStatus>
           <S.TeacherInfo>비밀번호 변경</S.TeacherInfo>
           <img src={Line} alt="" />
-          <S.LogoutBtn>로그아웃</S.LogoutBtn>
+          <S.LogoutBtn onClick={logout}>로그아웃</S.LogoutBtn>
         </S.TeacherStatus>
       </S.TeacherInfoWrapper>
       <S.TeacherInfoWrapper>
