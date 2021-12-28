@@ -26,7 +26,7 @@ const MainRouter: FC = (): JSX.Element => {
           component={AttendanceChangeListPage}
         />
 
-        <Route exact path="/atcheck" component={AttendanceCheckPage} />
+        <Route exact path="/atview" component={AttendanceCheckPage} />
         <Route exact path="/atchange" component={AttendanceChangePage} />
       </Switch>
     </>
