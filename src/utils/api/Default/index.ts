@@ -13,7 +13,6 @@ export const getRequestWithToken = (
 ) => {
   const request = axios.create({
     timeout: 10000,
-    baseURL: "test",
     headers: {
       Authorization: `Bearer ${token}`,
       withCredentials: true,
