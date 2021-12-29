@@ -1,28 +1,13 @@
+import { AxiosError } from "axios";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { searchStudents } from "../../../../utils/api/AttendanceChange";
-
+import { searchStatus } from "../../../../state/atom/ATChange";
+import { useRecoilState } from "recoil";
 import * as S from "../../styles";
 //출결 변경
 const Add: FC = (): JSX.Element => {
   const searchContainer = useRef<HTMLDivElement>(null);
-
-  const addStudents = () => {
-    const input = document.createElement("input");
-    searchContainer.current?.appendChild(input);
-    input.placeholder = "검색...";
-    input.onchange = (e: any) => {
-      searchStudents(e.target.value)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          if (err.response.status === 401) {
-            alert("로그인 후에 서비스를 사용하실 수 있습니다.");
-            window.location.href = "/login";
-          }
-        });
-    };
-  };
+  const [search, setSearch] = useRecoilState(searchStatus);
 
   return (
     <>
@@ -30,7 +15,20 @@ const Add: FC = (): JSX.Element => {
       <S.ACColumn>
         <S.ACTitle>결석자</S.ACTitle>
         <S.AbsentsContainer ref={searchContainer}>
-          <S.AddAbsents onClick={addStudents}>추가</S.AddAbsents>
+          <S.AddAbsents onClick={() => setSearch(!search)}>추가</S.AddAbsents>
+          <S.SearchStudentsInput
+            placeholder="검색..."
+            display={search ? "block" : "none"}
+            onChange={(e) => {
+              searchStudents(e.target.value)
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err: AxiosError) => {
+                  console.log(err);
+                });
+            }}
+          />
         </S.AbsentsContainer>
       </S.ACColumn>
     </>

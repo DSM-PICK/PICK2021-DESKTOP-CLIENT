@@ -22,5 +22,10 @@ export const SDateValue = atom({
 
 export const WordLength = atom({
   key: "length",
-  default: 0
-})
+  default: 0,
+});
+
+export const searchStatus = atom({
+  key: "search",
+  default: false,
+});
