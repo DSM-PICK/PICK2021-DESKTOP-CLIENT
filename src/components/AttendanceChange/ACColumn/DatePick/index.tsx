@@ -1,7 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import * as S from "./styles";
 import { ACColumn } from "../../styles";
-import { COLOR } from "../../../../style";
 import { useRecoilState } from "recoil";
 import {
   FModal,
@@ -13,9 +12,7 @@ import Calendar from "../../../Calendar/Calendar";
 
 const DatePick: FC = (): JSX.Element => {
   const date = new Date();
-  const ACListArray: string[] = ["결석일", "결석자", "종류", "신고자", "비고"];
   const TypesArray: string[] = ["외출", "현체", "귀가", "이동", "취업"];
-  const TypesRefs = useRef(new Array(TypesArray.length));
   const [isFOpen, setIsFOpen] = useRecoilState<boolean>(FModal);
   const [isSOpen, setIsSOpen] = useRecoilState<boolean>(SModal);
   const [fdateValue, setFdateValue] = useRecoilState<string>(FDateValue);
@@ -48,7 +45,6 @@ const DatePick: FC = (): JSX.Element => {
           </div>
         </S.Date>
         <span>~</span>
-        {/* 두번째 날짜 */}
         <S.Date>
           <S.DateText onClick={() => setIsSOpen(!isSOpen)}>
             {`${sdateValue.split("-")[0]}년 ${sdateValue.split("-")[1]}월 ${

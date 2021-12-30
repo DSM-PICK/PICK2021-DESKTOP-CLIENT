@@ -34,8 +34,11 @@ export const DateText = styled.div`
   text-align: center;
   width: auto;
   margin: 0 auto;
+  padding: 1px 2px;
   &:hover {
-    border-bottom: 0.3px dotted ${COLOR.black};
+    transition: 0.3s;
+    background-color: ${COLOR.lighterGray};
+    border-radius: 5px;
   }
 `;
 
@@ -45,5 +48,5 @@ export const ClassInput = styled.input`
   outline: none;
   border: none;
   font-size: 16px;
-  border-bottom: 0.3px dotted ${COLOR.black};
+  border-bottom: 1px solid ${COLOR.black};
 `;
