@@ -13,8 +13,8 @@ export const NoteInput = styled.input`
   width: 97%;
   height: 40px;
   border: none;
-  border-bottom: 1px solid ${COLOR.black};
+  border-bottom: 1px solid ${COLOR.darkerGray};
   outline: none;
-  font-size: 14px;
   text-align: center;
+  color: ${COLOR.darkGray};
 `;

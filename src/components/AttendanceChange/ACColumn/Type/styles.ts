@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLOR } from '../../../../style/index';
+import { COLOR } from "../../../../style/index";
 
 export const ACTitle = styled.div`
   font-size: 16px;
@@ -20,7 +20,7 @@ export const Types = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  border: 1px solid ${COLOR.gray};
+  border: 1px solid ${COLOR.darkGray};
   border-radius: 6px;
   overflow: hidden;
 `;
