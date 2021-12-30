@@ -53,7 +53,7 @@ const AttendanceChange: FC = (): JSX.Element => {
                   <List
                     index={index}
                     key={value}
-                    date={"2020년 9월 31일 2교시 ~ 2020년 9월 31일 3교시"}
+                    date={"2020.9.31 2교시 ~ 2020.9.31 3교시"}
                     name={"조준서"}
                     teacherName={"신요신"}
                     reason={"학교 밖으로 나갔어요"}

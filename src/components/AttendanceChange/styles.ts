@@ -29,6 +29,7 @@ export const ACContainer = styled.div`
     flex-direction: column;
     width: 45%;
     gap: 15px;
+    position: relative;
   }
 
   & .aclistbox {
@@ -57,11 +58,12 @@ export const AddButton = styled.input`
 `;
 
 export const ErrorMessage = styled.div<{ display: string }>`
+  position: absolute;
   width: 100%;
   color: red;
   text-align: center;
   bottom: 0;
-  transform: translateY(100%);
+  transform: translateY(180%);
   font-size: 16px;
   display: ${(props) => props.display};
 `;
@@ -72,14 +74,20 @@ export const ACListHeader = styled.div`
   display: grid;
   grid-template-columns: 35% 13% 13% 13% 25%;
   border-bottom: 1px solid ${COLOR.lightGray};
+  background-color: ${COLOR.lighterGray};
 `;
 
 export const ACListBody = styled.div`
   display: grid;
   grid-template-rows: repeat(10, 1fr);
-  height: 320px;
+  height: 240px;
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
+  font-size: 15px;
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
 `;
 
 export const ACListHead = styled.div`
@@ -91,29 +99,6 @@ export const ACListHead = styled.div`
 `;
 
 export const ACListContainer = styled.div`
-  border-top: 1px solid ${COLOR.lightGray};
-  border-bottom: 1px solid ${COLOR.lightGray};
-`;
-
-export const ACListCells = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  cursor: default;
-`;
-
-export const ACListColumns = styled.div`
-  height: 45px;
-  display: grid;
-  grid-template-columns: 35% 13% 13% 13% 25%;
-  position: relative;
-  color: ${COLOR.darkGray};
-  &:hover {
-    transition: 0.3s;
-    color: ${COLOR.black};
-    background-color: ${COLOR.grey};
-  }
+  border: 1px solid ${COLOR.lightGray};
+  border-radius: 5px;
 `;

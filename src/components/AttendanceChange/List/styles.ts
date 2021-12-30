@@ -12,14 +12,13 @@ export const ACListCells = styled.div`
 `;
 
 export const ACListColumns = styled.div`
-  height: 45px;
+  height: 40px;
   display: grid;
   grid-template-columns: 35% 13% 13% 13% 25%;
   position: relative;
-  color: ${COLOR.darkGray};
+  color: ${COLOR.black};
   &:hover {
-    transition: 0.3s;
-    color: ${COLOR.black};
+    transition: 0.2s;
     background-color: ${COLOR.grey};
   }
 `;
