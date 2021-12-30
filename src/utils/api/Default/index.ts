@@ -36,6 +36,25 @@ instance.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+    const refreshToken = localStorage.getItem("refresh_token");
+    const Autorization = {
+      refresh_token: refreshToken,
+    };
+    if (error.response?.status === 401) {
+      request
+        .put("/teacher/auth", Autorization)
+        .then((res) => {
+          localStorage.setItem("access_token", res.data.access_token);
+          localStorage.setItem("refresh_token", res.data.refresh_token);
+        })
+        .catch((err: AxiosError) => {
+          if (err.response?.status === 401) {
+            alert("로그인 후 이용하실 수 있습니다.");
+            window.location.href = "/login";
+          }
+        });
+    }
+
     return Promise.reject(error);
   }
 );
