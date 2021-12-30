@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { WordLength } from "../../state/atom/ATChange";
 import { getAttendanceChangeList } from "../../utils/api/AttendanceChange";
 import { COLOR } from "../../style";
+import List from "./List";
 
 //출결 변경
 const AttendanceChange: FC = (): JSX.Element => {
@@ -19,8 +20,8 @@ const AttendanceChange: FC = (): JSX.Element => {
   useEffect(() => {
     getAttendanceChangeList().then((res) => {
       console.log(res);
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <S.Wrapper>
@@ -47,26 +48,16 @@ const AttendanceChange: FC = (): JSX.Element => {
               })}
             </S.ACListHeader>
             <S.ACListBody>
-              {TestArray.map((value: number) => {
+              {TestArray.map((value: number, index: number) => {
                 return (
-                  <S.ACListColumns key={value}>
-                    <S.ACListCells>
-                      2020년 9월 31일 2교시 ~ 2020년 9월 31일 3교시
-                    </S.ACListCells>
-                    <S.ACListCells>조준서</S.ACListCells>
-                    <S.ACListCells>외출</S.ACListCells>
-                    <S.ACListCells>신요셉</S.ACListCells>
-                    <S.ACListCells>학교 밖으로 나갔어요</S.ACListCells>
-                    <S.ACListSettings onClick={() => ""}>
-                      <div />
-                      <div />
-                      <div />
-                    </S.ACListSettings>
-                    <S.SettingModal>
-                      <S.SettingSelection color={COLOR.gray}>수정</S.SettingSelection>
-                      <S.SettingSelection color={COLOR.red}>삭제</S.SettingSelection>
-                    </S.SettingModal>
-                  </S.ACListColumns>
+                  <List
+                    key={value}
+                    date={"2020년 9월 31일 2교시 ~ 2020년 9월 31일 3교시"}
+                    name={"조준서"}
+                    teacherName={"신요신"}
+                    reason={"학교 밖으로 나갔어요"}
+                    type={"외출"}
+                  />
                 );
               })}
             </S.ACListBody>
