@@ -64,15 +64,35 @@ export const ACTitle = styled.div`
   font-size: 16px;
   width: 70px;
   margin-right: 50px;
-    display: flex;
-    align-self: center;
+  display: flex;
+  align-self: center;
 `;
 
+export const AbsentsContainer = styled.div`
+  display: flex;
+  height: 30px;
+  gap: 10px;
+`;
+
+export const SearchStudentsInput = styled.input<{ display : string }>`
+  width: 84px;
+  height: 24px;
+  text-align: center;
+  outline: none;
+  border: 1px solid ${COLOR.gray};
+  border-radius: 5px;
+  display: ${props => props.display};
+`;
+
+export const searchedStudents = styled.div`
+
+`;
 
 export const AddAbsents = styled.div`
   cursor: pointer;
   width: 50px;
-  height: 25px;
+  height: 24px;
+  padding: 1px 2px;
   border: 1px solid ${COLOR.gray};
   color: 1px solid ${COLOR.gray};
   display: flex;
@@ -178,6 +198,7 @@ export const ACListBody = styled.div`
   height: 300px;
   width: 100%;
   overflow: scroll;
+  position: static;
 `;
 
 export const ACListHead = styled.div`
@@ -193,6 +214,7 @@ export const ACList = styled.div`
   height: 80%;
   border: 1px solid ${COLOR.grey};
   border-radius: 10px;
+  position: relative;
 `;
 
 export const ACListCells = styled.div`
@@ -201,6 +223,7 @@ export const ACListCells = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 export const ACListColumns = styled.div`
@@ -208,7 +231,9 @@ export const ACListColumns = styled.div`
   display: grid;
   grid-template-columns: 35% 13% 13% 13% 25%;
   position: relative;
+
   &:hover {
+    transition: 0.3s;
     background-color: ${COLOR.grey};
   }
 `;
@@ -225,12 +250,50 @@ export const ACListSettings = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 2px;
-  border-radius: 5px;
+  border-radius: 3px;
+  z-index: 3;
   cursor: pointer;
+  
   div {
     border-radius: 50%;
-    background-color: gray;
+    background-color: rgb(112, 112, 112);
     width: 4px;
     height: 4px;
+  }
+
+  &:hover {
+    background-color: ${COLOR.lightGray};
+    transition: 3s;
+  }
+`;
+
+export const SettingModal = styled.div<{ display: string }>`
+  position: absolute;
+  width: 40px;
+  height: 50px;
+  right: 0;
+  transform: translate(-90%, 40%);
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 4px 4px 0px;
+  display: ${props => props.display};
+  grid-template-rows: repeat(2, 1fr);
+  z-index: 10;
+  background-color: ${COLOR.white};
+`;
+
+export const SettingSelection = styled.div<{ color: string }>`
+  position: relative;
+  color: ${props => props.color};
+  font-size: 14px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${COLOR.grey};
   }
 `;
