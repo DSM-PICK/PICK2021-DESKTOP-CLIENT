@@ -3,16 +3,17 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import { searchStudents } from "../../../../utils/api/AttendanceChange";
 import { searchStatus } from "../../../../state/atom/ATChange";
 import { useRecoilState } from "recoil";
-import * as S from "../../styles";
+import * as S from "./styles";
+import { ACColumn } from "../../styles";
 //출결 변경
 const Add: FC = (): JSX.Element => {
   const searchContainer = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useRecoilState(searchStatus);
+  const selectedStudentsArr = ["2119 조준서"];
 
   return (
     <>
-      <S.Title>출결 변경</S.Title>
-      <S.ACColumn>
+      <ACColumn>
         <S.ACTitle>결석자</S.ACTitle>
         <S.AbsentsContainer ref={searchContainer}>
           <S.AddAbsents onClick={() => setSearch(!search)}>추가</S.AddAbsents>
@@ -29,8 +30,13 @@ const Add: FC = (): JSX.Element => {
                 });
             }}
           />
+          {
+            selectedStudentsArr.map((value) => {
+              return <S.SelectedStudents>{value}</S.SelectedStudents>
+            })
+          }
         </S.AbsentsContainer>
-      </S.ACColumn>
+      </ACColumn>
     </>
   );
 };

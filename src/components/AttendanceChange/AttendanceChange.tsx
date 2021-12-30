@@ -27,21 +27,21 @@ const AttendanceChange: FC = (): JSX.Element => {
     <S.Wrapper>
       <S.ACContainer>
         <div className="acbox">
-          <div>
+          <>
+            <S.Title>출결 변경</S.Title>
             <Add />
-            <Date />
-            <Type />
-            <Reason />
-            <S.AddButton type="button" value="추가하기" />
-            <S.ErrorMessage display={wordLength > 10 ? "block" : "none"}>
-              비고의 내용이 10글자를 넘었습니다
-            </S.ErrorMessage>
-          </div>
+          </>
+          <Date />
+          <Type />
+          <Reason />
+          <S.AddButton type="button" value="추가하기" />
+          <S.ErrorMessage display={wordLength > 10 ? "block" : "none"}>
+            비고의 내용이 10글자를 넘었습니다
+          </S.ErrorMessage>
         </div>
-
-        <S.ACListBox>
+        <div className="aclistbox">
           <S.Title>출결 변동사항</S.Title>
-          <S.ACList>
+          <S.ACListContainer>
             <S.ACListHeader>
               {ACListArray.map((value: string, index: number) => {
                 return <S.ACListHead key={index}>{value}</S.ACListHead>;
@@ -51,6 +51,7 @@ const AttendanceChange: FC = (): JSX.Element => {
               {TestArray.map((value: number, index: number) => {
                 return (
                   <List
+                    index={index}
                     key={value}
                     date={"2020년 9월 31일 2교시 ~ 2020년 9월 31일 3교시"}
                     name={"조준서"}
@@ -61,8 +62,8 @@ const AttendanceChange: FC = (): JSX.Element => {
                 );
               })}
             </S.ACListBody>
-          </S.ACList>
-        </S.ACListBox>
+          </S.ACListContainer>
+        </div>
       </S.ACContainer>
     </S.Wrapper>
   );

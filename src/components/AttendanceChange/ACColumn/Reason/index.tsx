@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { useRecoilState } from "recoil";
 import { WordLength } from "../../../../state/atom/ATChange";
-import * as S from "../../styles";
+import * as S from "./styles";
+import { ACColumn } from "../../styles";
 
 const Reason: FC = (): JSX.Element => {
   const [wordLength, setWordLength] = useRecoilState<number>(WordLength);
@@ -12,16 +13,16 @@ const Reason: FC = (): JSX.Element => {
 
   return (
     <>
-      <S.ACColumn>
+      <ACColumn>
         <S.ACTitle>비고</S.ACTitle>
-        <S.NoteBox>
+        <div>
           <S.NoteInput
             type="text"
             placeholder="최대 10글자로 입력해주세요 (선택)"
             onChange={checkWordLength}
           />
-        </S.NoteBox>
-      </S.ACColumn>
+        </div>
+      </ACColumn>
     </>
   );
 };

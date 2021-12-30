@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import * as S from "../../styles";
+import * as S from "./styles";
+import { ACColumn } from "../../styles";
 import { COLOR } from "../../../../style";
 import { useRecoilState } from "recoil";
 import {
@@ -31,7 +32,7 @@ const DatePick: FC = (): JSX.Element => {
   }, []);
 
   return (
-    <S.ACColumn>
+    <ACColumn>
       <S.ACTitle>날짜</S.ACTitle>
       <S.DateBox>
         <S.Date>
@@ -61,7 +62,7 @@ const DatePick: FC = (): JSX.Element => {
           </div>
         </S.Date>
       </S.DateBox>
-    </S.ACColumn>
+    </ACColumn>
   );
 };
 

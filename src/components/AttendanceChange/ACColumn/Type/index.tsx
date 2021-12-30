@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import * as S from "../../styles";
+import * as S from "./styles";
 import { COLOR } from "../../../../style";
+import { ACColumn } from "../../styles";
 
 const AttendanceChange: FC = (): JSX.Element => {
   const ACListArray: string[] = ["결석일", "결석자", "종류", "신고자", "비고"];
@@ -27,7 +28,7 @@ const AttendanceChange: FC = (): JSX.Element => {
   }, [typeIndex]);
 
   return (
-    <S.ACColumn>
+    <ACColumn>
       <S.ACTitle>종류</S.ACTitle>
       <S.TypeBox>
         <S.Types>
@@ -44,7 +45,7 @@ const AttendanceChange: FC = (): JSX.Element => {
           })}
         </S.Types>
       </S.TypeBox>
-    </S.ACColumn>
+    </ACColumn>
   );
 };
 
