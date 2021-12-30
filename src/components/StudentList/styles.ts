@@ -2,10 +2,9 @@ import styled from '@emotion/styled'
 
 export const Container = styled.div`
     width: 45vw;
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    height: 60vh;
+    overflow-y: scroll;
+    padding-top: 10px;
 `;
 export const StudentListTitle = styled.div`
     width: 100%;
@@ -13,6 +12,7 @@ export const StudentListTitle = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 `;
 export const CheckBox = styled.div`
     width: 30px;

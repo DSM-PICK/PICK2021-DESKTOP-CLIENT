@@ -13,7 +13,7 @@ const StudentList = () => {
         ))}
       </S.StudentListTitle>
       {arr.map((stduent, index) => (
-        <S.StudentList>
+        <S.StudentList key={index}>
           <S.CheckBox>
             <div></div>
           </S.CheckBox>
