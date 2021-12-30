@@ -1,15 +1,33 @@
-import { AxiosError } from "axios";
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import { searchStudents } from "../../../../utils/api/AttendanceChange";
-import { searchStatus } from "../../../../state/atom/ATChange";
+import {
+  searchStatus,
+  searchedStudents,
+  selectedStudents,
+} from "../../../../state/atom/ATChange";
 import { useRecoilState } from "recoil";
 import * as S from "./styles";
 import { ACColumn } from "../../styles";
-//출결 변경
+
+interface objectType { id: number; gcn: string; name: string };
+
 const Add: FC = (): JSX.Element => {
   const searchContainer = useRef<HTMLDivElement>(null);
   const [search, setSearch] = useRecoilState(searchStatus);
-  const selectedStudentsArr = ["2119 조준서"];
+  const [selectedStudentsArr, setSelectedStudentsArr] = useRecoilState<any>(selectedStudents);
+  const [searchedStudentsArr, setSearchedStudentsArr] = useRecoilState(searchedStudents);
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const selectStudent = (object: objectType) => {
+    if (selectedStudentsArr.find((value : any) => value.id === object.id)) {
+      alert("이미 추가하신 학생입니다.");
+      return;
+    }
+    setSearch(!search);
+    setInputValue("");
+    setSearchedStudentsArr([]);
+    setSelectedStudentsArr([object ,...selectedStudentsArr]);
+  };
 
   return (
     <>
@@ -21,20 +39,32 @@ const Add: FC = (): JSX.Element => {
             placeholder="검색..."
             display={search ? "block" : "none"}
             onChange={(e) => {
+              setInputValue(e.target.value);
               searchStudents(e.target.value)
                 .then((res) => {
-                  console.log(res);
+                  setSearchedStudentsArr(res.data);
                 })
-                .catch((err: AxiosError) => {
-                  console.log(err);
-                });
             }}
+            value={inputValue}
           />
-          {
-            selectedStudentsArr.map((value) => {
-              return <S.SelectedStudents>{value}</S.SelectedStudents>
-            })
-          }
+          <S.SearchedContainer display={search ? "flex" : "none"}>
+            {searchedStudentsArr.map((value: any) => {
+              return (
+                <S.SearchedStudent
+                  onClick={() => selectStudent(value)}
+                  key={value.id}
+                >{`${value.gcn} ${value.name}`}</S.SearchedStudent>
+              );
+            })}
+          </S.SearchedContainer>
+
+          {selectedStudentsArr.map((value: any) => {
+            return (
+              <S.SelectedStudents
+                key={value.id}
+              >{`${value.gcn} ${value.name}`}</S.SelectedStudents>
+            );
+          })}
         </S.AbsentsContainer>
       </ACColumn>
     </>

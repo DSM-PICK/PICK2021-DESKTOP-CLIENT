@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLOR } from '../../../../style/index';
+import { COLOR } from "../../../../style/index";
 
 export const ACTitle = styled.div`
   font-size: 16px;
@@ -11,8 +11,9 @@ export const ACTitle = styled.div`
 
 export const AbsentsContainer = styled.div`
   display: flex;
-  height: 30px;
   gap: 10px;
+  width: 900px;
+  position: relative;
 `;
 
 export const SearchStudentsInput = styled.input<{ display: string }>`
@@ -27,7 +28,7 @@ export const SearchStudentsInput = styled.input<{ display: string }>`
 
 export const AddAbsents = styled.div`
   cursor: pointer;
-  width: 50px;
+  min-width: 50px;
   height: 24px;
   padding: 1px 2px;
   border: 1px solid ${COLOR.gray};
@@ -39,5 +40,30 @@ export const AddAbsents = styled.div`
 `;
 
 export const SelectedStudents = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
 
+export const SearchedStudent = styled.div`
+  height: 20px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const SearchedContainer = styled.div<{ display : string }>`
+  max-height: 80px;
+  position: absolute;
+  display: ${props => props.display};
+  flex-direction: column;
+  transform: translate(75%, 110%);
+  left: 0;
+  bottom: 0;
+  background: ${COLOR.white};
+  overflow: auto;
+  border: 1px solid ${COLOR.gray};
+  border-radius: 3px;
 `;

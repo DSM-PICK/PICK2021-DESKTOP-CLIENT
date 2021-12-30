@@ -29,3 +29,13 @@ export const searchStatus = atom({
   key: "search",
   default: false,
 });
+
+export const searchedStudents = atom({
+  key: "searched-students",
+  default: [],
+});
+
+export const selectedStudents = atom({
+  key: "selected-students",
+  default: [],
+});
