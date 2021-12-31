@@ -1,31 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./styles";
 import { Logo, Line } from "../../assets";
 import { getUserInfo } from "../../utils/api/UserInfo";
 import { useLayoutEffect } from "react";
-import { StudentListPage } from "../../Pages";
+import { useHistory } from "react-router-dom";
+//import { StudentListPage } from "../../Pages";
+
 const UserInfo = () => {
+  const history = useHistory();
+  const [userInfo, setUserInfo] = useState<any>();
   useLayoutEffect(() => {
-    const token = localStorage.getItem("access_token");
+    const token = localStorage.getItem("teacher_id");
     if (!token) {
       return;
     }
-    const value = getUserInfo(token, "pick");
+    getUserInfo(token).then((res) => setUserInfo(res.data));
   }, []);
-  const hrTeacherCheck = (teacher_id: number): JSX.Element => {
+  /*const hrTeacherCheck = (teacher_id: number): JSX.Element => {
     if (teacher_id === 1) {
       return <StudentListPage />;
     }
     return <img src={Logo} alt="" />;
-  };
+  };*/
   const logout = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("teacher_id");
+    alert("로그아웃 되었습니다.");
+    history.push("/login");
   };
   return (
     <S.Container>
       <S.TeacherInfoWrapper>
-        <S.TeacherInfo>본부교무실 소속</S.TeacherInfo>
-        <S.TeacherName>권경혜 선생님</S.TeacherName>
+        <S.TeacherInfo>{userInfo?.location_name}</S.TeacherInfo>
+        <S.TeacherName>{userInfo?.name}</S.TeacherName>
         <S.TeacherStatus>
           <S.TeacherInfo>비밀번호 변경</S.TeacherInfo>
           <img src={Line} alt="" />
