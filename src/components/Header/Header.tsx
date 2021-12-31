@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { useHistory } from "react-router-dom";
 import * as S from "./styles";
-
 const RegisterArr = [
   { link: "/", title: "홈" },
   { link: "/atcheck", title: "출석체크" },
@@ -20,6 +19,8 @@ const Header: FC = (): JSX.Element => {
   };
   const logout = () => {
     localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("teacher_id");
     alert("로그아웃 되었습니다.");
     history.push("/login");
   };

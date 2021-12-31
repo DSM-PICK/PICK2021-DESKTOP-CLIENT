@@ -27,4 +27,7 @@ export const TeacherInfo = styled.span`
 `;
 export const LogoutBtn = styled(TeacherInfo)`
     color: red;
+    :hover{
+        cursor: pointer;
+    }
 `;

@@ -1,9 +1,8 @@
-import { getRequestWithToken } from "../Default"
+import instance from "../Default"
 
-export const getUserInfo = async (token: string, teacher_id:string) => {
+export const getUserInfo = async (teacher_id:string) => {
     try{
-        const getRequest = getRequestWithToken(token)
-        const request = await getRequest.get(`/teacher/${teacher_id}/information`)
+        const request = await instance.get(`/teacher/${teacher_id}/information`)
         return request;
     }
     catch(error){
