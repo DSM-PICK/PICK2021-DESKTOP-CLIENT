@@ -14,7 +14,7 @@ export const StudentListTitle = styled.div`
     align-items: center;
     margin-bottom: 10px;
 `;
-export const CheckBox = styled.div`
+export const CheckBox = styled.div<{display : string}>`
     width: 30px;
     height: 30px;
     border: 1px solid black;
@@ -27,6 +27,10 @@ export const CheckBox = styled.div`
         height: 20px;
         border-radius: 6px;
         background-color: #FF6E04;
+        display: ${props => props.display};
+    }
+    :hover{
+        cursor: pointer;
     }
 `;
 export const Title = styled.div`
