@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
+import { FC, MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Prev, Next } from "../../assets";
 import { COLOR } from "../../style/index";
 import {
@@ -11,7 +11,7 @@ import {
   SelectedIndex
 } from "../../state/atom/ATChange";
 import { CModal, CDateValue } from "../../state/atom/ATCheck";
-import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilState, useRecoilValue, useRecoilCallback } from "recoil";
 
 interface Props {
   isOpen: boolean;
@@ -33,18 +33,24 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const setCOpen = useSetRecoilState(CModal);
   const [studentObject, setStudentObject] = useRecoilState<any[]>(StudentObject);
   const [selectedId, setSelectedId ]= useRecoilState(SelectedIndex);
-  let count : number;
+  const [count, setCount] = useState(0);
 
+  useLayoutEffect(() => {
+    setCount(selectedId);
+  }, [selectedId])
+  
   useEffect(() => {
     for (let i = 0; i < 41; i++) {
       if (DayContainer.current.childNodes[i].children.length >= 1) {
         DayContainer.current.childNodes[i].firstChild.remove();
       }
     }
-    makeCalendar(year, month);
-  }, [month]);
+    makeCalendar(year, month, count);
+  }, [month, count]);
 
-  const makeCalendar = (year: number, month: number) => {
+
+  const makeCalendar = (year: number, month: number, count : any) => {
+    console.log(`싯팔:`, count)
     const dateLength: number = new Date(year, month + 1, 0).getDate();
     const newDate: number = new Date(year, month).getDay();
     for (let i = newDate; i < dateLength + newDate; i++) {
@@ -59,7 +65,7 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
         div.style.fontSize = "15px";
       }
       DayContainer.current.childNodes[i].insertBefore(div, null);
-      div.onclick = selectCalendar;
+      div.onclick = function (e) {selectCalendar(e, count)};
     }
   };
 
@@ -93,8 +99,8 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
     }
   };
 
-  const selectCalendar = (e: any) => {
-    console.log(selectedId)
+  const selectCalendar = (e: any, count : any) => {
+    console.log(`calendar count : ${count}`)
     const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
     if (index === 0) {
       setFDate(selectDate);
@@ -106,7 +112,7 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
       setSDate(selectDate);
       setSOpen(false);
       setStudentObject((prevArr) => prevArr.map((value) => {
-        return value.id === selectedId ? { ...value, fdate: selectDate } : value;
+        return value.id === count ? { ...value, fdate: selectDate } : value;
       }))
     } else if (index === 2) {
       setCDate(selectDate);
@@ -114,9 +120,19 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
     }
   };
 
-  useEffect(() => {
-    setSelectedId(selectedId);
-  }, [selectedId])
+  // const SetStudentObject = (e : any, count : any) => {
+  //   console.log(count);
+  //   const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
+  //   if (index === 0) {
+  //     setStudentObject((prevArr) => prevArr.map((value) => {
+  //       return value.id === selectedId ? { ...value, sdate: selectDate } : value;
+  //     }))
+  //   } else if (index === 1) {
+  //     setStudentObject((prevArr) => prevArr.map((value) => {
+  //       return value.id === selectedId ? { ...value, fdate: selectDate } : value;
+  //     }))
+  //   } 
+  // }
 
   return (
     <S.Container display={isOpen ? "block" : "none"}>
