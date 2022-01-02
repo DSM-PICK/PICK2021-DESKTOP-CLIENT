@@ -1,14 +1,21 @@
 import { FC } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { ReasonAtom } from "../../../../state/atom/ATChange";
+import { StudentObject, SelectedIndex } from "../../../../state/atom/ATChange";
+
 import * as S from "./styles";
 import { ACColumn } from "../../styles";
 
 const Reason: FC = (): JSX.Element => {
-  const setReason = useSetRecoilState(ReasonAtom);
+  const [reason ,setReason] = useRecoilState(ReasonAtom);
+  const [studentObject, setStudentObject] = useRecoilState(StudentObject);
+  const selectedIndex = useRecoilValue(SelectedIndex);
   
   const checkWordLength = (e: React.ChangeEvent<HTMLInputElement>) => {
     setReason(e.target.value);
+    setStudentObject((prevArr) => prevArr.map((value) => {
+      return value.id === selectedIndex ? { ...value, reason: e.target.value } : value;
+    }))
   };
 
   return (
