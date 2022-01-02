@@ -20,7 +20,47 @@ export const SDateValue = atom({
   default: "",
 });
 
-export const WordLength = atom({
-  key: "length",
-  default: 0
-})
+export const ReasonAtom = atom({
+  key: "reason",
+  default: "",
+});
+
+export const SClassValue = atom({
+  key: "sclassvalue",
+  default: null,
+});
+
+export const FClassValue = atom({
+  key: "fclassvalue",
+  default: "",
+});
+
+export const searchStatus = atom({
+  key: "search",
+  default: false,
+});
+
+export const searchedStudents = atom({
+  key: "searched-students",
+  default: [],
+});
+
+export const AttendanceChanges = atom({
+  key: "attendance-change",
+  default: [],
+});
+
+export const StudentObject = atom({
+  key: "student",
+  default: [],
+});
+
+export const SelectedIndex = atom({
+  key: "selected-index",
+  default: 0,
+});
+
+export const TypeIndex = atom({
+  key: "type-atom",
+  default: 0,
+});
