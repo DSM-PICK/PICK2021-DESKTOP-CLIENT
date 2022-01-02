@@ -8,10 +8,10 @@ export const BtnContainer = styled.div`
     align-items: center;
 `
 export const ClubState = styled(BtnContainer)`
-    height: 170px;
+    height: 140px;
     width: 100%;
     justify-content: space-around;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     border-bottom: 1px solid black;
     span{
         
@@ -39,14 +39,14 @@ export const Location = styled(ClubState)`
     box-sizing: border-box;
     padding: 40px 0;
     border:none;
-    span{
-color: gray;
+    
+`;
+export const FloorName = styled.span<{select:boolean}>`
+color: ${props=>props.select ? "black" : "#767676"};
 :hover{
             cursor: pointer;
         }
-    }
-    
-`;
+`
 export const BtnWrapper = styled.div`
     width: 80%;
     height:40px;
@@ -54,13 +54,15 @@ export const BtnWrapper = styled.div`
     border-radius: 10px;
     display: flex;
 `;
-export const BtnItem = styled(BtnWrapper)`
+export const BtnItem = styled(BtnWrapper)<{select:boolean}>`
     width: 33.3%;
     height: 100%;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: ${props=>props.select ? "white" : "black"};
+    background-color: ${props=>props.select ? "#ff6e04" : "white"};
     :hover{
         background-color: #ff6e04;
         color:white;
