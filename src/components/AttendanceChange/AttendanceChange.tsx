@@ -1,8 +1,8 @@
 import React, { FC, useEffect } from "react";
 import * as S from "./styles";
 import { Add, Date, Type, Reason } from "./ACColumn";
-import { useRecoilState } from "recoil";
-import { WordLength } from "../../state/atom/ATChange";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import { ReasonAtom, AttendanceChanges } from "../../state/atom/ATChange";
 import { getAttendanceChangeList } from "../../utils/api/AttendanceChange";
 import { COLOR } from "../../style";
 import List from "./List";
@@ -10,7 +10,9 @@ import List from "./List";
 //출결 변경
 const AttendanceChange: FC = (): JSX.Element => {
   const ACListArray: string[] = ["결석일", "결석자", "종류", "신고자", "비고"];
-  const [wordLength, setWordLength] = useRecoilState<number>(WordLength);
+  const ReasonState = useRecoilValue(ReasonAtom);
+  const setAttendancyChange = useSetRecoilState(AttendanceChanges);
+
   const TestArray = [];
 
   for (let i = 0; i < 20; i++) {
@@ -19,8 +21,8 @@ const AttendanceChange: FC = (): JSX.Element => {
 
   useEffect(() => {
     getAttendanceChangeList().then((res) => {
-      console.log(res);
-    });
+      setAttendancyChange(res.data);
+    })
   }, []);
 
   return (
@@ -35,7 +37,7 @@ const AttendanceChange: FC = (): JSX.Element => {
           <Type />
           <Reason />
           <S.AddButton type="button" value="추가하기" />
-          <S.ErrorMessage display={wordLength > 10 ? "block" : "none"}>
+          <S.ErrorMessage display={ReasonState.length > 10 ? "block" : "none"}>
             비고의 내용이 10글자를 넘었습니다
           </S.ErrorMessage>
         </div>

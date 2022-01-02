@@ -7,9 +7,11 @@ import {
   FDateValue,
   SDateValue,
   SModal,
+  StudentObject,
+  SelectedIndex
 } from "../../state/atom/ATChange";
 import { CModal, CDateValue } from "../../state/atom/ATCheck";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
 
 interface Props {
   isOpen: boolean;
@@ -29,8 +31,9 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const setSOpen = useSetRecoilState(SModal);
   const setCDate = useSetRecoilState(CDateValue);
   const setCOpen = useSetRecoilState(CModal);
-  const FDate = useRecoilValue<string>(FDateValue);
-  const SDate = useRecoilValue<string>(SDateValue);
+  const [studentObject, setStudentObject] = useRecoilState<any[]>(StudentObject);
+  const [selectedId, setSelectedId ]= useRecoilState(SelectedIndex);
+  let count : number;
 
   useEffect(() => {
     for (let i = 0; i < 41; i++) {
@@ -91,18 +94,29 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   };
 
   const selectCalendar = (e: any) => {
+    console.log(selectedId)
     const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
     if (index === 0) {
       setFDate(selectDate);
       setFOpen(false);
+      setStudentObject((prevArr) => prevArr.map((value) => {
+        return value.id === count ? { ...value, sdate: selectDate } : value;
+      }))
     } else if (index === 1) {
       setSDate(selectDate);
       setSOpen(false);
+      setStudentObject((prevArr) => prevArr.map((value) => {
+        return value.id === selectedId ? { ...value, fdate: selectDate } : value;
+      }))
     } else if (index === 2) {
       setCDate(selectDate);
       setCOpen(false);
     }
   };
+
+  useEffect(() => {
+    setSelectedId(selectedId);
+  }, [selectedId])
 
   return (
     <S.Container display={isOpen ? "block" : "none"}>

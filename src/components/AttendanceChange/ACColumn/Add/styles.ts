@@ -39,11 +39,6 @@ export const AddAbsents = styled.div`
   border-radius: 5px;
 `;
 
-export const SelectedStudents = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;
 
 export const SearchedStudent = styled.div`
   height: 20px;

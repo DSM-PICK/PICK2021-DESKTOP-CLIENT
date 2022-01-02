@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { useRecoilValue } from "recoil";
 
 export const FModal = atom({
   key: "fopened",
@@ -20,9 +21,9 @@ export const SDateValue = atom({
   default: "",
 });
 
-export const WordLength = atom({
-  key: "length",
-  default: 0,
+export const ReasonAtom = atom({
+  key: "reason",
+  default: "",
 });
 
 export const searchStatus = atom({
@@ -38,4 +39,28 @@ export const searchedStudents = atom({
 export const selectedStudents = atom({
   key: "selected-students",
   default: [],
+});
+
+export const AttendanceChanges = atom({
+  key: "attendance-change",
+  default: [],
+});
+
+export const StudentObject = atom({
+  key: "student",
+  default: [
+    {
+      id: 0,
+      gcn: 0,
+      name: "",
+      date: "",
+      type: 0,
+      reason: "",
+    },
+  ],
+});
+
+export const SelectedIndex = atom({
+  key: "selected-index",
+  default: 0,
 });

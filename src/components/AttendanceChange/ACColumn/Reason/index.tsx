@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { useRecoilState } from "recoil";
-import { WordLength } from "../../../../state/atom/ATChange";
+import { useSetRecoilState } from "recoil";
+import { ReasonAtom } from "../../../../state/atom/ATChange";
 import * as S from "./styles";
 import { ACColumn } from "../../styles";
 
 const Reason: FC = (): JSX.Element => {
-  const [wordLength, setWordLength] = useRecoilState<number>(WordLength);
-
+  const setReason = useSetRecoilState(ReasonAtom);
+  
   const checkWordLength = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWordLength(e.target.value.length);
+    setReason(e.target.value);
   };
 
   return (

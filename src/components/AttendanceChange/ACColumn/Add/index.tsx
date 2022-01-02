@@ -1,15 +1,19 @@
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { searchStudents } from "../../../../utils/api/AttendanceChange";
 import {
   searchStatus,
   searchedStudents,
   selectedStudents,
+  StudentObject,
+  SDateValue,
+  FDateValue,
+  ReasonAtom
 } from "../../../../state/atom/ATChange";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import * as S from "./styles";
 import { ACColumn } from "../../styles";
-
-interface objectType { id: number; gcn: string; name: string };
+import SelectedStudent from '../../SelectedStudents/index';
+import { SelectedStudentsType, StudentObjectType } from "../../../../../interface/ATChange";
 
 const Add: FC = (): JSX.Element => {
   const searchContainer = useRef<HTMLDivElement>(null);
@@ -17,16 +21,31 @@ const Add: FC = (): JSX.Element => {
   const [selectedStudentsArr, setSelectedStudentsArr] = useRecoilState<any>(selectedStudents);
   const [searchedStudentsArr, setSearchedStudentsArr] = useRecoilState(searchedStudents);
   const [inputValue, setInputValue] = useState<string>("");
+  const [studentObject, setStudentObject] = useRecoilState<StudentObjectType | any>(StudentObject);
+  const sdate = useRecoilValue(SDateValue);
+  const fdate = useRecoilValue(FDateValue);
+  const Reason = useRecoilValue(ReasonAtom);
 
-  const selectStudent = (object: objectType) => {
+  const selectStudent = (object: SelectedStudentsType) => {
     if (selectedStudentsArr.find((value : any) => value.id === object.id)) {
       alert("이미 추가하신 학생입니다.");
       return;
+    }
+    const data = {
+      id: object.id,
+      gcn: object.gcn,
+      name: object.name,
+      sdate: sdate,
+      fdate: fdate,
+      type: 0,
+      reason: Reason,
+      selected: true
     }
     setSearch(!search);
     setInputValue("");
     setSearchedStudentsArr([]);
     setSelectedStudentsArr([object ,...selectedStudentsArr]);
+    setStudentObject(studentObject.concat(data));
   };
 
   return (
@@ -60,9 +79,7 @@ const Add: FC = (): JSX.Element => {
 
           {selectedStudentsArr.map((value: any) => {
             return (
-              <S.SelectedStudents
-                key={value.id}
-              >{`${value.gcn} ${value.name}`}</S.SelectedStudents>
+              <SelectedStudent id={value.id} gcn={value.gcn} name={value.name} key={value.gcn}/>
             );
           })}
         </S.AbsentsContainer>
