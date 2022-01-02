@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { getAfterSchool, getMajorClub } from "../../utils/api/Afterschool";
 import { getLocationList } from "../../utils/api/Locationlist";
 import * as S from "./styles";
 const floorArr = ["4층", "3층", "2층", "기타"];
@@ -10,6 +9,11 @@ const ClassList = () => {
 
   useEffect(() => {
     setFloor(0);
+    if (afterschool === 1) {
+      getAfterSchool().then((res) => console.log(res));
+    } else if (afterschool === 2) {
+      getMajorClub().then((res) => console.log(res));
+    }
   }, [afterschool]);
   useEffect(() => {}, [floor]);
 
