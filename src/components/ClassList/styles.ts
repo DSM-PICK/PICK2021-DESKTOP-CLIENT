@@ -14,11 +14,13 @@ export const ClubState = styled(BtnContainer)`
     padding-bottom: 30px;
     border-bottom: 1px solid black;
     span{
+        
         font-size: 18px;
         font-weight: 400;
         line-height: 40px;
         text-align: center;
         width: 100%;
+        
     }
 `
 export const ClassName = styled.h1`
@@ -37,6 +39,13 @@ export const Location = styled(ClubState)`
     box-sizing: border-box;
     padding: 40px 0;
     border:none;
+    span{
+color: gray;
+:hover{
+            cursor: pointer;
+        }
+    }
+    
 `;
 export const BtnWrapper = styled.div`
     width: 80%;
@@ -55,5 +64,6 @@ export const BtnItem = styled(BtnWrapper)`
     :hover{
         background-color: #ff6e04;
         color:white;
+        cursor: pointer;
     }
 `

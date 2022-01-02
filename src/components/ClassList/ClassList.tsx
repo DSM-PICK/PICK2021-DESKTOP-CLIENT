@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLayoutEffect } from "react";
+import { getLocationList } from "../../utils/api/Locationlist";
 import * as S from "./styles";
-const floorArr = ["층", "4층", "3층", "2층", "기타"];
-const classArr = [
-  "동아리명",
-  "교실(3-1)",
-  "세미나실(2-1)",
-  "교실(3-2)",
-  "교실(3-3)",
-];
+const floorArr = ["4층", "3층", "2층", "기타"];
 const ClassList = () => {
+  const [classArr, setClassArr] = useState<any>([]);
+  const [afterschool, setAfterschool] = useState<number>(1);
+  useLayoutEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      return;
+    }
+    getLocationList(token).then((res) => console.log(res.data));
+  }, []);
+  const changeFloor = () => {};
   return (
     <S.BtnContainer>
       <S.ClubState>
@@ -19,20 +24,19 @@ const ClassList = () => {
       </S.ClubState>
       <S.ClubLocationWrapper>
         <S.Location>
+          <span style={{ color: "black", cursor: "default" }}>층</span>
           {floorArr.map((floor, i) => (
-            <span key={i}>{floor}</span>
+            <span key={i} onClick={changeFloor}>
+              {floor}
+            </span>
           ))}
         </S.Location>
-        <S.Location>
-          {classArr.map((className, i) => (
-            <span key={i}>{className}</span>
-          ))}
-        </S.Location>
+        <S.Location></S.Location>
       </S.ClubLocationWrapper>
       <S.BtnWrapper>
-        <S.BtnItem>방과후</S.BtnItem>
-        <S.BtnItem>전공</S.BtnItem>
-        <S.BtnItem>자습</S.BtnItem>
+        <S.BtnItem onClick={() => setAfterschool(1)}>방과후</S.BtnItem>
+        <S.BtnItem onClick={() => setAfterschool(2)}>전공</S.BtnItem>
+        <S.BtnItem onClick={() => setAfterschool(3)}>자습</S.BtnItem>
       </S.BtnWrapper>
     </S.BtnContainer>
   );
