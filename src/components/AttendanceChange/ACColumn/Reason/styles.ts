@@ -16,5 +16,5 @@ export const NoteInput = styled.input`
   border-bottom: 1px solid ${COLOR.darkerGray};
   outline: none;
   text-align: center;
-  color: ${COLOR.darkGray};
+  color: ${COLOR.black};
 `;

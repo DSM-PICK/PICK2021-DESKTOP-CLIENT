@@ -4,7 +4,7 @@ import { ReasonAtom } from "../../../../state/atom/ATChange";
 import { StudentObject, SelectedIndex } from "../../../../state/atom/ATChange";
 import * as S from "./styles";
 import { ACColumn } from "../../styles";
-import { StudentObjectType } from "../../../../../interface/ATChange";
+import { StudentObjectType } from "../../../../interface/ATChange";
 
 const Reason: FC = (): JSX.Element => {
   const [reason ,setReason] = useRecoilState(ReasonAtom);

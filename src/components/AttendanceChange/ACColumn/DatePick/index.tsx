@@ -8,10 +8,12 @@ import {
   FDateValue,
   SDateValue,
   StudentObject,
-  SelectedIndex
+  SelectedIndex,
+  SClassValue,
+  FClassValue
 } from "../../../../state/atom/ATChange";
 import Calendar from "../../../Calendar/Calendar";
-import { StudentObjectType } from "../../../../../interface/ATChange";
+import { StudentObjectType } from "../../../../interface/ATChange";
 
 const DatePick: FC = (): JSX.Element => {
   const date = new Date();
@@ -23,6 +25,8 @@ const DatePick: FC = (): JSX.Element => {
   const selectedIndex = useRecoilValue(SelectedIndex);
   const [sdate, setSdate] = useState("결석자 추가");
   const [fdate, setFdate] = useState("결석자 추가");
+  const [sclass, setSclass] = useRecoilState<number | any>(SClassValue);
+  const [fclass, setFclass] = useRecoilState<number | any>(FClassValue);
 
   useEffect(() => {
     setFdateValue(
@@ -51,6 +55,34 @@ const DatePick: FC = (): JSX.Element => {
          ))
   }, [selectedIndex, fdateValue, sdateValue])
 
+  useEffect(() => {
+    setSclass("");
+    setFclass("");
+    if(studentObject.length === 0) return;
+    setSclass(studentObject.find((value : any) => value.id === selectedIndex).sclass === "" 
+    ? ""
+    : studentObject.find((value : any) => value.id === selectedIndex).sclass)
+    setFclass(studentObject.find((value : any) => value.id === selectedIndex).fclass === "" 
+    ? ""
+    : studentObject.find((value : any) => value.id === selectedIndex).fclass)
+  }, [selectedIndex])
+
+  const handleClassInputS = (e : any) => {
+    if(studentObject.length === 0) return;
+    setStudentObject((prevArr : any) => prevArr.map((value : any) => {
+      return value.id === selectedIndex ? { ...value, sclass: e.target.value } : value;
+    }))
+    setSclass(e.target.value);
+  }
+
+  const handleClassInputF = (e : any) => {
+    if(studentObject.length === 0) return;
+    setStudentObject((prevArr : any) => prevArr.map((value : any) => {
+      return value.id === selectedIndex ? { ...value, fclass: e.target.value } : value;
+    }))
+    setFclass(e.target.value);
+  }
+
   return (
     <ACColumn>
       <S.ACTitle>날짜</S.ACTitle>
@@ -61,7 +93,7 @@ const DatePick: FC = (): JSX.Element => {
           </S.DateText>
           <Calendar isOpen={isFOpen} index={0} />
           <div className="classContainer">
-            <S.ClassInput maxLength={1} />
+            <S.ClassInput maxLength={1} value={sclass} onChange={handleClassInputS}/>
             <div>교시</div>
           </div>
         </S.Date>
@@ -72,7 +104,7 @@ const DatePick: FC = (): JSX.Element => {
           </S.DateText>
           <Calendar isOpen={isSOpen} index={1} />
           <div className="classContainer">
-            <S.ClassInput maxLength={1} />
+            <S.ClassInput maxLength={1} value={fclass} onChange={handleClassInputF}/>
             <div>교시</div>
           </div>
         </S.Date>
