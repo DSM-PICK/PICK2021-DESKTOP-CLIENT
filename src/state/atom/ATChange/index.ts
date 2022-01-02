@@ -25,6 +25,16 @@ export const ReasonAtom = atom({
   default: "",
 });
 
+export const SClassValue = atom({
+  key: "sclassvalue",
+  default: null,
+});
+
+export const FClassValue = atom({
+  key: "fclassvalue",
+  default: "",
+});
+
 export const searchStatus = atom({
   key: "search",
   default: false,
@@ -32,11 +42,6 @@ export const searchStatus = atom({
 
 export const searchedStudents = atom({
   key: "searched-students",
-  default: [],
-});
-
-export const selectedStudents = atom({
-  key: "selected-students",
   default: [],
 });
 
