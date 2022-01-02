@@ -35,7 +35,7 @@ const UserInfo = () => {
         <S.TeacherInfo>{userInfo?.location_name}</S.TeacherInfo>
         <S.TeacherName>{userInfo?.name}</S.TeacherName>
         <S.TeacherStatus>
-          <S.TeacherInfo>비밀번호 변경</S.TeacherInfo>
+          <S.GotoPassword to="/password">비밀번호 변경</S.GotoPassword>
           <img src={Line} alt="" />
           <S.LogoutBtn onClick={logout}>로그아웃</S.LogoutBtn>
         </S.TeacherStatus>
