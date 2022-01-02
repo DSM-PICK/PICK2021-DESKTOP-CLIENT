@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import * as S from "./styles";
-import { selectedStudents, SelectedIndex } from "../../../state/atom/ATChange";
+import { SelectedIndex, StudentObject } from "../../../state/atom/ATChange";
 import { useRecoilState } from "recoil";
-import { SelectedStudentsType } from "../../../../interface/ATChange/index";
+import { StudentObjectType } from "../../../interface/ATChange/index";
 
 interface Props {
   id: number;
@@ -13,17 +13,17 @@ interface Props {
 const SelectedStudent: FC<Props> = ({ id, gcn, name }) => {
   const [selected, setSelected] = useState<boolean>(true);
   const [showDelete, setShowDelete] = useState<boolean>(false);
-  const [selectedStudentsArr, setSelectedStudentsArr] = useRecoilState(selectedStudents);
   const [selectedIndex, setSelectedIndex] = useRecoilState<number>(SelectedIndex);
+  const [studentObejct, setStudentObject] = useRecoilState(StudentObject);
 
-  const deleteStudent = (gcn: number) => {
-    setSelectedStudentsArr(
-      selectedStudentsArr.filter(
-        (value: SelectedStudentsType) => value.gcn != gcn
+  const deleteStudent = (id : number) => {
+    setStudentObject(
+      studentObejct.filter(
+        (value: StudentObjectType) => value.id != id
       )
     );
   };
-  
+
   return (
     <>
       <S.SelectedStudents
@@ -41,7 +41,7 @@ const SelectedStudent: FC<Props> = ({ id, gcn, name }) => {
           display={showDelete ? "default" : "none"}
           onClick={(e) => {
             e.stopPropagation();
-            deleteStudent(gcn);
+            deleteStudent(id);
           }}
         >
           삭제

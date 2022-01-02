@@ -1,3 +1,4 @@
+import { postDataType } from "../../../interface/ATChange";
 import instance, { request } from "../Default";
 
 export const searchStudents = async (name: string) => {
@@ -18,10 +19,12 @@ export const getAttendanceChangeList = async () => {
   }
 };
 
-export const postAttendanceChange = async() => {
+export const postAttendanceChange = async (data: postDataType) => {
+  const submitData = data;
   try {
-
-  } catch {
-    
+    const req = await instance.post("/attendance", submitData);
+    return req;
+  } catch (error) {
+    throw error;
   }
-}
+};
