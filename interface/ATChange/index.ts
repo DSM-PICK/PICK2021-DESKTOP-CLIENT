@@ -8,7 +8,8 @@ export interface StudentObjectType {
   id: number
   gcn: number
   name: string
-  date: string
-  type: number,
-  reason: string,
+  sdate: string
+  type: number
+  reason: string
+  fdate: string
 }

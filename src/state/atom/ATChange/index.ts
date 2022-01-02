@@ -1,5 +1,4 @@
 import { atom } from "recoil";
-import { useRecoilValue } from "recoil";
 
 export const FModal = atom({
   key: "fopened",
@@ -48,19 +47,15 @@ export const AttendanceChanges = atom({
 
 export const StudentObject = atom({
   key: "student",
-  default: [
-    {
-      id: 0,
-      gcn: 0,
-      name: "",
-      date: "",
-      type: 0,
-      reason: "",
-    },
-  ],
+  default: [],
 });
 
 export const SelectedIndex = atom({
   key: "selected-index",
+  default: 0,
+});
+
+export const TypeIndex = atom({
+  key: "type-atom",
   default: 0,
 });

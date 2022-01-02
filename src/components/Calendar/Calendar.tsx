@@ -11,7 +11,7 @@ import {
   SelectedIndex
 } from "../../state/atom/ATChange";
 import { CModal, CDateValue } from "../../state/atom/ATCheck";
-import { useSetRecoilState, useRecoilState, useRecoilValue, useRecoilCallback } from "recoil";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
 
 interface Props {
   isOpen: boolean;
@@ -20,7 +20,7 @@ interface Props {
 
 const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const date: Date = new Date();
-  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${(date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`;
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
   const week: Array<string> = ["월", "화", "수", "목", "금"];
@@ -31,8 +31,8 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   const setSOpen = useSetRecoilState(SModal);
   const setCDate = useSetRecoilState(CDateValue);
   const setCOpen = useSetRecoilState(CModal);
-  const [studentObject, setStudentObject] = useRecoilState<any[]>(StudentObject);
-  const [selectedId, setSelectedId ]= useRecoilState(SelectedIndex);
+  const [studentObject ,setStudentObject] = useRecoilState(StudentObject);
+  const selectedId = useRecoilValue(SelectedIndex);
   const [count, setCount] = useState(0);
 
   useLayoutEffect(() => {
@@ -50,7 +50,6 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
 
 
   const makeCalendar = (year: number, month: number, count : any) => {
-    console.log(`싯팔:`, count)
     const dateLength: number = new Date(year, month + 1, 0).getDate();
     const newDate: number = new Date(year, month).getDay();
     for (let i = newDate; i < dateLength + newDate; i++) {
@@ -100,39 +99,25 @@ const Calendar: FC<Props> = ({ isOpen, index }): JSX.Element => {
   };
 
   const selectCalendar = (e: any, count : any) => {
-    console.log(`calendar count : ${count}`)
-    const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
+    if(studentObject.length === 0) return;
+    const selectDate = `${year}-${month < 10 ? `0${month + 1}` : month + 1}-${e.target.innerHTML < 10 ? `0${e.target.innerHTML}` : e.target.innerHTML}`;
     if (index === 0) {
+      setStudentObject(studentObject.length === 0 ? studentObject : (prevArr : any) => prevArr.map((value : any) => {
+        return value.id === count ? { ...value, sdate: selectDate } : value;
+      }));
       setFDate(selectDate);
       setFOpen(false);
-      setStudentObject((prevArr) => prevArr.map((value) => {
-        return value.id === count ? { ...value, sdate: selectDate } : value;
-      }))
     } else if (index === 1) {
+      setStudentObject(studentObject.length === 0 ? studentObject : (prevArr : any) => prevArr.map((value : any) => {
+        return value.id === count ? { ...value, fdate: selectDate } : value;
+      }));
       setSDate(selectDate);
       setSOpen(false);
-      setStudentObject((prevArr) => prevArr.map((value) => {
-        return value.id === count ? { ...value, fdate: selectDate } : value;
-      }))
     } else if (index === 2) {
       setCDate(selectDate);
       setCOpen(false);
     }
   };
-
-  // const SetStudentObject = (e : any, count : any) => {
-  //   console.log(count);
-  //   const selectDate = `${year}-${month + 1}-${e.target.innerHTML}`;
-  //   if (index === 0) {
-  //     setStudentObject((prevArr) => prevArr.map((value) => {
-  //       return value.id === selectedId ? { ...value, sdate: selectDate } : value;
-  //     }))
-  //   } else if (index === 1) {
-  //     setStudentObject((prevArr) => prevArr.map((value) => {
-  //       return value.id === selectedId ? { ...value, fdate: selectDate } : value;
-  //     }))
-  //   } 
-  // }
 
   return (
     <S.Container display={isOpen ? "block" : "none"}>
