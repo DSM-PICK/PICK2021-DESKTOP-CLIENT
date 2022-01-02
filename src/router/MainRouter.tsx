@@ -10,6 +10,7 @@ import {
   AttendanceChangeListPage,
   StudentListPage,
   AtcheckPage,
+  PasswordPage,
 } from "../Pages";
 const MainRouter: FC = (): JSX.Element => {
   return (
@@ -30,6 +31,7 @@ const MainRouter: FC = (): JSX.Element => {
         <Route exact path="/atview" component={AttendanceCheckPage} />
         <Route exact path="/atchange" component={AttendanceChangePage} />
         <Route exact path="/atcheck" component={AtcheckPage} />
+        <Route exact path="/password" component={PasswordPage} />
       </Switch>
     </>
   );
