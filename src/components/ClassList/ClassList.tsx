@@ -3,11 +3,14 @@ import { getAfterSchool, getMajorClub } from "../../utils/api/Afterschool";
 import * as S from "./styles";
 const floorArr = ["4층", "3층", "2층", "기타"];
 interface PlaceType {
+  major_id?: string;
+  major_name?: string;
   after_school_id?: number;
-  name: string;
-  teacher_name: string;
+  name?: string;
+  teacher_name?: string;
   location_name: string;
   floor: number;
+  head_name?: string;
 }
 const ClassList = () => {
   const [afterschool, setAfterschool] = useState<number>(1);
