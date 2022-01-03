@@ -1,5 +1,8 @@
 import styled from '@emotion/styled'
-
+interface FloorNameType {
+    select?:boolean;
+    floor?:boolean;
+}
 export const BtnContainer = styled.div`
     width: 350px;
     height: 600px;
@@ -39,13 +42,13 @@ export const Location = styled(ClubState)`
     box-sizing: border-box;
     padding: 40px 0;
     border:none;
-    
 `;
-export const FloorName = styled.span<{select:boolean}>`
-color: ${props=>props.select ? "black" : "#767676"};
-:hover{
-            cursor: pointer;
-        }
+export const FloorName = styled.span<FloorNameType>`
+    color: ${props=>props.select ? "#767676" : "black"};
+    :hover{
+        cursor: pointer;
+    }
+    display: ${props=>props.floor ? "none" : "block"}
 `
 export const BtnWrapper = styled.div`
     width: 80%;

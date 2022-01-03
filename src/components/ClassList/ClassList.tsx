@@ -1,29 +1,35 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getAfterSchool, getMajorClub } from "../../utils/api/Afterschool";
-import { getLocationList } from "../../utils/api/Locationlist";
 import * as S from "./styles";
 const floorArr = ["4층", "3층", "2층", "기타"];
+interface PlaceType {
+  after_school_id?: number;
+  name: string;
+  teacher_name: string;
+  location_name: string;
+  floor: number;
+}
 const ClassList = () => {
   const [afterschool, setAfterschool] = useState<number>(1);
   const [floor, setFloor] = useState<number>(0);
 
+  const [place, setPlace] = useState<PlaceType[]>([
+    {
+      after_school_id: 0,
+      name: "",
+      teacher_name: "",
+      location_name: "",
+      floor: 0,
+    },
+  ]);
   useEffect(() => {
     setFloor(0);
     if (afterschool === 1) {
-      getAfterSchool().then((res) => console.log(res));
+      getAfterSchool().then((res) => setPlace(res.data));
     } else if (afterschool === 2) {
-      getMajorClub().then((res) => console.log(res));
+      getMajorClub().then((res) => setPlace(res.data));
     }
   }, [afterschool]);
-  useEffect(() => {}, [floor]);
-
-  useLayoutEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (!token) {
-      return;
-    }
-    getLocationList(token).then((res) => console.log(res.data));
-  }, []);
 
   const changeFloor = (index: number) => {
     setFloor(index);
@@ -42,9 +48,16 @@ const ClassList = () => {
             <S.FloorName
               key={i}
               onClick={() => changeFloor(i)}
-              select={floor === i}
+              select={floor !== i}
             >
               {floorname}
+            </S.FloorName>
+          ))}
+        </S.Location>
+        <S.Location>
+          {place.map((pn, i) => (
+            <S.FloorName key={i} floor={floor !== pn.floor}>
+              {pn.location_name}
             </S.FloorName>
           ))}
         </S.Location>
