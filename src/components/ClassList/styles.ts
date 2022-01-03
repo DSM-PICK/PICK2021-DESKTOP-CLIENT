@@ -17,14 +17,20 @@ export const ClubState = styled(BtnContainer)`
     padding-bottom: 15px;
     border-bottom: 1px solid black;
     span{
-        
         font-size: 18px;
         font-weight: 400;
         line-height: 40px;
         text-align: center;
         width: 100%;
-        
     }
+`
+export const ClubStateItem = styled.span<{display:boolean}>`
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 40px;
+    text-align: center;
+    width: 100%;
+    display: ${props=>props.display ? "block" : "none"}
 `
 export const ClassName = styled.h1`
     text-align: center;
@@ -44,7 +50,7 @@ export const Location = styled(ClubState)`
     border:none;
 `;
 export const FloorName = styled.span<FloorNameType>`
-    color: ${props=>props.select ? "#767676" : "black"};
+    color: ${props=>props.select ? "black":"#767676"};
     :hover{
         cursor: pointer;
     }
