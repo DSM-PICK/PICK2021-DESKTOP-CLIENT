@@ -20,5 +20,6 @@ export interface postDataType {
   state: string;
   term: string;
   student_id: number;
-  reason: string
+  reason: string;
+  teacher_id : string | null;
 }

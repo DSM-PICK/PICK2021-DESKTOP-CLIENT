@@ -17,10 +17,10 @@ const Login: FC = (): JSX.Element => {
   const requestLoginApi = () => {
     loginRequest(idRef.current?.value, pwRef.current?.value)
       .then((res) => {
-        console.log(res.status === 200);
         if (res.status === 200 && checkboxRef.current?.checked) {
           localStorage.setItem("pick_id", id);
         }
+        localStorage.setItem("teacher_id", res.data.teacher_id)
         window.location.href = "/";
       })
       .catch((err) => {
