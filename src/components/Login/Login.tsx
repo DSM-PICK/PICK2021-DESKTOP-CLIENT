@@ -35,7 +35,7 @@ const Login: FC = (): JSX.Element => {
 
   return (
     <S.Container>
-      <img src={pickLogo} />
+      <img src={pickLogo} alt="" />
       <S.LoginContainer>
         <S.Title>로그인</S.Title>
         <S.LoginForm>
