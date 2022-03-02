@@ -21,7 +21,7 @@ flex-direction: column;
 align-items: center;
 `;
 export const Register = styled(Link)`
-    width: 84px;
+    width: 110px;
     height: 95%;
     display: flex;
     flex-direction: column;

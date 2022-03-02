@@ -2,12 +2,11 @@ import React, { FC } from "react";
 import { useHistory } from "react-router-dom";
 import * as S from "./styles";
 const RegisterArr = [
-  { link: "/", title: "홈" },
+  { link: "/", title: "출결변경" },
   { link: "/atcheck", title: "출석체크" },
-  { link: "/atchange", title: "출결변경" },
   { link: "/schedule", title: "일정관리" },
   { link: "/atview", title: "출석조회" },
-  { link: "/template", title: "템플릿" },
+  { link: "/password", title: "비밀번호 변경" },
 ];
 const Header: FC = (): JSX.Element => {
   const history = useHistory();
