@@ -28,3 +28,13 @@ export const postAttendanceChange = async (data: postDataType) => {
     throw error;
   }
 };
+
+export const deleteAttendanceChange = async (id: number) => {
+  try {
+    const req = await instance.delete("/attendance", );
+
+    return req 
+  } catch (error) {
+    throw error
+  }
+}

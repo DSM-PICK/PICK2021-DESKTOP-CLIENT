@@ -23,3 +23,16 @@ export interface postDataType {
   reason: string;
   teacher_id : string | null;
 }
+
+export interface StudentListDataType {
+  director_id: string
+  id: number
+  memo: string
+  period: string
+  reason: string
+  state: string
+  student_id: string
+  teacher_id: string
+  term: string
+  name: string
+}

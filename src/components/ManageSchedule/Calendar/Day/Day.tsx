@@ -33,11 +33,6 @@ const Day: FC<Props> = ({
   const [colorIndex, setColorIndex] = useRecoilState(selectedIndex);
   const editStatus = useRecoilValue(scheduleEditStatus);
 
-  useEffect(() => {
-    getDate();
-    getType();
-  }, []);
-
   const getDate = () => {
     const newDate = (fullDate.split("-")[2] || "").split("");
     setDate(
@@ -52,6 +47,11 @@ const Day: FC<Props> = ({
         break;
     }
   };
+
+  useEffect(() => {
+    getDate();
+    getType();
+  }, []);
 
 
   return (

@@ -49,7 +49,7 @@ instance.interceptors.response.use(
         })
         .catch((err: AxiosError) => {
           if (err.response?.status === 401) {
-            alert("로그인 후 이용하실 수 있습니다.");
+            // alert("로그인 후 이용하실 수 있습니다.");
             window.location.href = "/login";
           }
         });
