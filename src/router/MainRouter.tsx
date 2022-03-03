@@ -5,7 +5,6 @@ import {
   ManageSchedulePage,
   AttendanceCheckPage,
   AttendanceChangePage,
-  AttendanceChangeListPage,
   StudentListPage,
   AtcheckPage,
   PasswordPage,
@@ -18,12 +17,6 @@ const MainRouter: FC = (): JSX.Element => {
         <Route exact path="/schedule" component={ManageSchedulePage} />
         <Route exact path="/manageschedule" component={ManageSchedulePage} />
         <Route exact path="/studentlist" component={StudentListPage} />
-        <Route
-          exact
-          path="/atchangelist"
-          component={AttendanceChangeListPage}
-        />
-
         <Route exact path="/atview" component={AttendanceCheckPage} />
         <Route exact path="/" component={AttendanceChangePage} />
         <Route exact path="/atcheck" component={AtcheckPage} />
