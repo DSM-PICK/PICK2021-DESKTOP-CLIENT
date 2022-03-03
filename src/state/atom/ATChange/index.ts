@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+const date = new Date();
 
 export const FModal = atom({
   key: "fopened",
@@ -12,12 +13,16 @@ export const SModal = atom({
 
 export const FDateValue = atom({
   key: "fdate",
-  default: "",
+  default: `${date.getFullYear()}-${
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+  }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`,
 });
 
 export const SDateValue = atom({
   key: "sdate",
-  default: "",
+  default: `${date.getFullYear()}-${
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+  }-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`,
 });
 
 export const ReasonAtom = atom({

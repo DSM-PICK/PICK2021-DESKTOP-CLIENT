@@ -1,9 +1,10 @@
 import * as S from "./styles";
-import { FC, MutableRefObject, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { prevPointer, nextPointer } from "../../../assets";
-import Day from "../Day/Day";
+// import Day from "./Day/Day";
 import { data } from "../../../test/testData";
-import { getSchedules } from '../../../utils/api/Calendar';
+import { getSchedules } from "../../../utils/api/Calendar";
+import Day from "./Day/Day";
 
 interface Props {
   editStatus: boolean;
@@ -13,10 +14,16 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
   const date: Date = new Date();
   const [year, setYear] = useState<number>(date.getFullYear());
   const [month, setMonth] = useState<number>(date.getMonth());
+  // const totalMonthLength = new Array(42);
+  // for(let i = 0; i < totalMonthLength.length; i++) {
+  //   totalMonthLength.push(i + 1)
+  // }
   const [TData, setTData] = useState<Array<string>>(data);
   const [NData, setNData] = useState<Array<string>>([]);
   const week: Array<string> = ["일", "월", "화", "수", "목", "금", "토"];
-  const Today: string = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  const Today: string = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}`;
 
   const dummyData = {
     date: "",
@@ -49,16 +56,6 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
     setNData(newDateArray);
   };
 
-  useEffect(() => {
-    addDummyData(year, month);
-  }, []);
-
-  useEffect(() => {
-    getSchedules(year, month).then((res) => {
-      console.log(res);
-    })
-  }, [month])
-
   const nextMonth = () => {
     setMonth(month + 1);
     if (month >= 11) {
@@ -79,6 +76,16 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
       setYear(year - 1);
     }
   };
+
+  useEffect(() => {
+    addDummyData(year, month);
+  }, []);
+
+  useEffect(() => {
+    getSchedules(year, month).then((res) => {
+      console.log(res);
+    });
+  }, [month]);
 
   return (
     <S.Container>
@@ -123,6 +130,22 @@ const Calendar: FC<Props> = ({ editStatus }): JSX.Element => {
               />
             );
           })}
+          {/* {totalMonthLength.map((_, index) => {
+            return (
+              <Day
+                key={index}
+                fullDate={"value.date"}
+                dayType={"value.name"}
+                floor2={`${index}`}
+                floor3={"value.director[1].name"}
+                floor4={"value.director[1].name"}
+                Today={"Today"}
+                month={index}
+                year={index}
+                index={index}
+              />
+            );
+          })} */}
         </S.DayContainer>
       </S.CalendarContainer>
     </S.Container>

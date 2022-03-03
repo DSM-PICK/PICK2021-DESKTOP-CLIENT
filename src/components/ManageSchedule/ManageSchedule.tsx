@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Calendar from "./Calendar/Calendar";
 import * as S from "./styles";
 import ChooseTeacher from "./ChooseTeacher/ChooseTeacher";

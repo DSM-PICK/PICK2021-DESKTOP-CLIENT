@@ -16,7 +16,6 @@ import Calendar from "../../../Calendar/Calendar";
 import { StudentObjectType } from "../../../../interface/ATChange";
 
 const DatePick: FC = (): JSX.Element => {
-  const date = new Date();
   const [isFOpen, setIsFOpen] = useRecoilState<boolean>(FModal);
   const [isSOpen, setIsSOpen] = useRecoilState<boolean>(SModal);
   const [fdateValue, setFdateValue] = useRecoilState<string>(FDateValue);
@@ -27,15 +26,6 @@ const DatePick: FC = (): JSX.Element => {
   const [fdate, setFdate] = useState("결석자 추가");
   const [sclass, setSclass] = useRecoilState<number | any>(SClassValue);
   const [fclass, setFclass] = useRecoilState<number | any>(FClassValue);
-
-  useEffect(() => {
-    setFdateValue(
-      `${date.getFullYear()}-${(date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
-    );
-    setSdateValue(
-      `${date.getFullYear()}-${(date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}-${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}`
-    );
-  }, []);
 
   useLayoutEffect(() => {
       return studentObject.length === 0

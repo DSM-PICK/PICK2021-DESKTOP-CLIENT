@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import * as S from "./styles";
-import { COLOR } from "../../../style/index";
+import { COLOR } from "../../../../style/index";
 import {
   selectedIndex,
   scheduleEditStatus,
-} from "../../../state/atom/Schedule";
+} from "../../../../state/atom/Schedule";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 interface Props {
@@ -33,11 +33,6 @@ const Day: FC<Props> = ({
   const [colorIndex, setColorIndex] = useRecoilState(selectedIndex);
   const editStatus = useRecoilValue(scheduleEditStatus);
 
-  useEffect(() => {
-    getDate();
-    getType();
-  }, []);
-
   const getDate = () => {
     const newDate = (fullDate.split("-")[2] || "").split("");
     setDate(
@@ -54,10 +49,10 @@ const Day: FC<Props> = ({
   };
 
   useEffect(() => {
-    console.log(colorIndex);
-    console.log(index);
-    console.log(editStatus);
-  }, [colorIndex])
+    getDate();
+    getType();
+  }, []);
+
 
   return (
     <S.Days
