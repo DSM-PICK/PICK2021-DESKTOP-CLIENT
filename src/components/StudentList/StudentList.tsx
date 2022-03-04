@@ -37,11 +37,8 @@ const StudentList = () => {
       } else {
         selectarr[id[0] * 3 + id[1]] = e.target.value;
       }
-      setSelected(selectarr);
+      setSelected([...selectarr]);
     };
-  useEffect(() => {
-    alert("!!");
-  }, [selected]);
   return (
     <S.Container>
       <S.StudentListTitle>
