@@ -7,12 +7,14 @@ const arr = [...Array(20)].map((v, i) => i);
 const time = new Array(3).fill(0);
 const StudentList = () => {
   const [checkStatus, setCheckStatus] = useState<any[]>([]);
+  const [selected, setSelected] = useState<string[]>([
+    ...Array(arr.length * time.length).fill(" "),
+  ]);
   const allCheckClick = (checked: boolean) => {
     if (checked) {
       const idArray: any = [];
       arr.forEach((stu) => idArray.push(stu));
       setCheckStatus(idArray);
-      console.log(idArray);
     } else {
       setCheckStatus([]);
     }
@@ -25,9 +27,18 @@ const StudentList = () => {
       setCheckStatus(checkStatus.filter((el) => el !== id));
     }
   };
-  useEffect(() => {
-    console.log(checkStatus);
-  }, [checkStatus]);
+  const handleChangeSelect =
+    (id: number[]) => (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const selectarr = selected;
+      if (checkStatus.includes(id[0])) {
+        for (let i = 0; i < checkStatus.length; i++) {
+          selectarr[checkStatus[i] * 3 + id[1]] = e.target.value;
+        }
+      } else {
+        selectarr[id[0] * 3 + id[1]] = e.target.value;
+      }
+      setSelected([...selectarr]);
+    };
   return (
     <S.Container>
       <S.StudentListTitle>
@@ -58,14 +69,19 @@ const StudentList = () => {
           <span>2216 이진우</span>
 
           {time.map((array, i) => (
-            <S.StudentSelect key={i}>
-              <option></option>
-              <option>이동</option>
-              <option>외출</option>
-              <option>무단</option>
-              <option>현체</option>
-              <option>귀가</option>
-              <option>취업</option>
+            <S.StudentSelect
+              key={i}
+              id={String(index) + String(i)}
+              onChange={handleChangeSelect([index, i])}
+              value={selected[index * 3 + i]}
+            >
+              <option value=" "> </option>
+              <option value="이동">이동</option>
+              <option value="외출">외출</option>
+              <option value="무단">무단</option>
+              <option value="현체">현체</option>
+              <option value="귀가">귀가</option>
+              <option value="취업">취업</option>
             </S.StudentSelect>
           ))}
         </S.StudentList>
